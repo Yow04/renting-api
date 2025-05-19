@@ -4,8 +4,7 @@ CREATE TABLE `User` (
     `username` VARCHAR(191) NOT NULL,
     `email` VARCHAR(191) NOT NULL,
     `password` VARCHAR(191) NOT NULL,
-    `gender` ENUM('Pria', 'Wanita') NOT NULL,
-    `isActive` BOOLEAN NOT NULL DEFAULT true,
+    `gender` ENUM('Pria', 'Wanita') NULL,
     `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     `updatedAt` DATETIME(3) NOT NULL,
 

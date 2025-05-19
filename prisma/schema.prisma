@@ -19,8 +19,7 @@ model User {
   username  String    @unique
   email     String    @unique
   password  String
-  gender    Gender
-  isActive  Boolean   @default(true)
+  gender    Gender?
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
 }

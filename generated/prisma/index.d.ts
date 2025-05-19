@@ -894,7 +894,6 @@ export namespace Prisma {
     email: string | null
     password: string | null
     gender: $Enums.Gender | null
-    isActive: boolean | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -905,7 +904,6 @@ export namespace Prisma {
     email: string | null
     password: string | null
     gender: $Enums.Gender | null
-    isActive: boolean | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -916,7 +914,6 @@ export namespace Prisma {
     email: number
     password: number
     gender: number
-    isActive: number
     createdAt: number
     updatedAt: number
     _all: number
@@ -929,7 +926,6 @@ export namespace Prisma {
     email?: true
     password?: true
     gender?: true
-    isActive?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -940,7 +936,6 @@ export namespace Prisma {
     email?: true
     password?: true
     gender?: true
-    isActive?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -951,7 +946,6 @@ export namespace Prisma {
     email?: true
     password?: true
     gender?: true
-    isActive?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
@@ -1034,8 +1028,7 @@ export namespace Prisma {
     username: string
     email: string
     password: string
-    gender: $Enums.Gender
-    isActive: boolean
+    gender: $Enums.Gender | null
     createdAt: Date
     updatedAt: Date
     _count: UserCountAggregateOutputType | null
@@ -1063,7 +1056,6 @@ export namespace Prisma {
     email?: boolean
     password?: boolean
     gender?: boolean
-    isActive?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }, ExtArgs["result"]["user"]>
@@ -1076,12 +1068,11 @@ export namespace Prisma {
     email?: boolean
     password?: boolean
     gender?: boolean
-    isActive?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "username" | "email" | "password" | "gender" | "isActive" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
+  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "username" | "email" | "password" | "gender" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
 
   export type $UserPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "User"
@@ -1091,8 +1082,7 @@ export namespace Prisma {
       username: string
       email: string
       password: string
-      gender: $Enums.Gender
-      isActive: boolean
+      gender: $Enums.Gender | null
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["user"]>
@@ -1469,7 +1459,6 @@ export namespace Prisma {
     readonly email: FieldRef<"User", 'String'>
     readonly password: FieldRef<"User", 'String'>
     readonly gender: FieldRef<"User", 'Gender'>
-    readonly isActive: FieldRef<"User", 'Boolean'>
     readonly createdAt: FieldRef<"User", 'DateTime'>
     readonly updatedAt: FieldRef<"User", 'DateTime'>
   }
@@ -1813,7 +1802,6 @@ export namespace Prisma {
     email: 'email',
     password: 'password',
     gender: 'gender',
-    isActive: 'isActive',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
@@ -1827,6 +1815,14 @@ export namespace Prisma {
   };
 
   export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
+
+
+  export const NullsOrder: {
+    first: 'first',
+    last: 'last'
+  };
+
+  export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
 
 
   export const UserOrderByRelevanceFieldEnum: {
@@ -1859,13 +1855,6 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'Boolean'
-   */
-  export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
-    
-
-
-  /**
    * Reference to a field of type 'DateTime'
    */
   export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
@@ -1890,8 +1879,7 @@ export namespace Prisma {
     username?: StringFilter<"User"> | string
     email?: StringFilter<"User"> | string
     password?: StringFilter<"User"> | string
-    gender?: EnumGenderFilter<"User"> | $Enums.Gender
-    isActive?: BoolFilter<"User"> | boolean
+    gender?: EnumGenderNullableFilter<"User"> | $Enums.Gender | null
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
   }
@@ -1901,8 +1889,7 @@ export namespace Prisma {
     username?: SortOrder
     email?: SortOrder
     password?: SortOrder
-    gender?: SortOrder
-    isActive?: SortOrder
+    gender?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _relevance?: UserOrderByRelevanceInput
@@ -1916,8 +1903,7 @@ export namespace Prisma {
     OR?: UserWhereInput[]
     NOT?: UserWhereInput | UserWhereInput[]
     password?: StringFilter<"User"> | string
-    gender?: EnumGenderFilter<"User"> | $Enums.Gender
-    isActive?: BoolFilter<"User"> | boolean
+    gender?: EnumGenderNullableFilter<"User"> | $Enums.Gender | null
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
   }, "id" | "username" | "email">
@@ -1927,8 +1913,7 @@ export namespace Prisma {
     username?: SortOrder
     email?: SortOrder
     password?: SortOrder
-    gender?: SortOrder
-    isActive?: SortOrder
+    gender?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: UserCountOrderByAggregateInput
@@ -1944,8 +1929,7 @@ export namespace Prisma {
     username?: StringWithAggregatesFilter<"User"> | string
     email?: StringWithAggregatesFilter<"User"> | string
     password?: StringWithAggregatesFilter<"User"> | string
-    gender?: EnumGenderWithAggregatesFilter<"User"> | $Enums.Gender
-    isActive?: BoolWithAggregatesFilter<"User"> | boolean
+    gender?: EnumGenderNullableWithAggregatesFilter<"User"> | $Enums.Gender | null
     createdAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
   }
@@ -1955,8 +1939,7 @@ export namespace Prisma {
     username: string
     email: string
     password: string
-    gender: $Enums.Gender
-    isActive?: boolean
+    gender?: $Enums.Gender | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -1966,8 +1949,7 @@ export namespace Prisma {
     username: string
     email: string
     password: string
-    gender: $Enums.Gender
-    isActive?: boolean
+    gender?: $Enums.Gender | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -1977,8 +1959,7 @@ export namespace Prisma {
     username?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
-    gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
-    isActive?: BoolFieldUpdateOperationsInput | boolean
+    gender?: NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -1988,8 +1969,7 @@ export namespace Prisma {
     username?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
-    gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
-    isActive?: BoolFieldUpdateOperationsInput | boolean
+    gender?: NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -1999,8 +1979,7 @@ export namespace Prisma {
     username: string
     email: string
     password: string
-    gender: $Enums.Gender
-    isActive?: boolean
+    gender?: $Enums.Gender | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -2010,8 +1989,7 @@ export namespace Prisma {
     username?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
-    gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
-    isActive?: BoolFieldUpdateOperationsInput | boolean
+    gender?: NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -2021,8 +1999,7 @@ export namespace Prisma {
     username?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
-    gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
-    isActive?: BoolFieldUpdateOperationsInput | boolean
+    gender?: NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -2042,16 +2019,11 @@ export namespace Prisma {
     not?: NestedStringFilter<$PrismaModel> | string
   }
 
-  export type EnumGenderFilter<$PrismaModel = never> = {
-    equals?: $Enums.Gender | EnumGenderFieldRefInput<$PrismaModel>
-    in?: $Enums.Gender[]
-    notIn?: $Enums.Gender[]
-    not?: NestedEnumGenderFilter<$PrismaModel> | $Enums.Gender
-  }
-
-  export type BoolFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolFilter<$PrismaModel> | boolean
+  export type EnumGenderNullableFilter<$PrismaModel = never> = {
+    equals?: $Enums.Gender | EnumGenderFieldRefInput<$PrismaModel> | null
+    in?: $Enums.Gender[] | null
+    notIn?: $Enums.Gender[] | null
+    not?: NestedEnumGenderNullableFilter<$PrismaModel> | $Enums.Gender | null
   }
 
   export type DateTimeFilter<$PrismaModel = never> = {
@@ -2063,6 +2035,11 @@ export namespace Prisma {
     gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
+  }
+
+  export type SortOrderInput = {
+    sort: SortOrder
+    nulls?: NullsOrder
   }
 
   export type UserOrderByRelevanceInput = {
@@ -2077,7 +2054,6 @@ export namespace Prisma {
     email?: SortOrder
     password?: SortOrder
     gender?: SortOrder
-    isActive?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -2088,7 +2064,6 @@ export namespace Prisma {
     email?: SortOrder
     password?: SortOrder
     gender?: SortOrder
-    isActive?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -2099,7 +2074,6 @@ export namespace Prisma {
     email?: SortOrder
     password?: SortOrder
     gender?: SortOrder
-    isActive?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -2122,22 +2096,14 @@ export namespace Prisma {
     _max?: NestedStringFilter<$PrismaModel>
   }
 
-  export type EnumGenderWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.Gender | EnumGenderFieldRefInput<$PrismaModel>
-    in?: $Enums.Gender[]
-    notIn?: $Enums.Gender[]
-    not?: NestedEnumGenderWithAggregatesFilter<$PrismaModel> | $Enums.Gender
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumGenderFilter<$PrismaModel>
-    _max?: NestedEnumGenderFilter<$PrismaModel>
-  }
-
-  export type BoolWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedBoolFilter<$PrismaModel>
-    _max?: NestedBoolFilter<$PrismaModel>
+  export type EnumGenderNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.Gender | EnumGenderFieldRefInput<$PrismaModel> | null
+    in?: $Enums.Gender[] | null
+    notIn?: $Enums.Gender[] | null
+    not?: NestedEnumGenderNullableWithAggregatesFilter<$PrismaModel> | $Enums.Gender | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedEnumGenderNullableFilter<$PrismaModel>
+    _max?: NestedEnumGenderNullableFilter<$PrismaModel>
   }
 
   export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
@@ -2158,12 +2124,8 @@ export namespace Prisma {
     set?: string
   }
 
-  export type EnumGenderFieldUpdateOperationsInput = {
-    set?: $Enums.Gender
-  }
-
-  export type BoolFieldUpdateOperationsInput = {
-    set?: boolean
+  export type NullableEnumGenderFieldUpdateOperationsInput = {
+    set?: $Enums.Gender | null
   }
 
   export type DateTimeFieldUpdateOperationsInput = {
@@ -2185,16 +2147,11 @@ export namespace Prisma {
     not?: NestedStringFilter<$PrismaModel> | string
   }
 
-  export type NestedEnumGenderFilter<$PrismaModel = never> = {
-    equals?: $Enums.Gender | EnumGenderFieldRefInput<$PrismaModel>
-    in?: $Enums.Gender[]
-    notIn?: $Enums.Gender[]
-    not?: NestedEnumGenderFilter<$PrismaModel> | $Enums.Gender
-  }
-
-  export type NestedBoolFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolFilter<$PrismaModel> | boolean
+  export type NestedEnumGenderNullableFilter<$PrismaModel = never> = {
+    equals?: $Enums.Gender | EnumGenderFieldRefInput<$PrismaModel> | null
+    in?: $Enums.Gender[] | null
+    notIn?: $Enums.Gender[] | null
+    not?: NestedEnumGenderNullableFilter<$PrismaModel> | $Enums.Gender | null
   }
 
   export type NestedDateTimeFilter<$PrismaModel = never> = {
@@ -2237,22 +2194,25 @@ export namespace Prisma {
     not?: NestedIntFilter<$PrismaModel> | number
   }
 
-  export type NestedEnumGenderWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.Gender | EnumGenderFieldRefInput<$PrismaModel>
-    in?: $Enums.Gender[]
-    notIn?: $Enums.Gender[]
-    not?: NestedEnumGenderWithAggregatesFilter<$PrismaModel> | $Enums.Gender
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumGenderFilter<$PrismaModel>
-    _max?: NestedEnumGenderFilter<$PrismaModel>
+  export type NestedEnumGenderNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.Gender | EnumGenderFieldRefInput<$PrismaModel> | null
+    in?: $Enums.Gender[] | null
+    notIn?: $Enums.Gender[] | null
+    not?: NestedEnumGenderNullableWithAggregatesFilter<$PrismaModel> | $Enums.Gender | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedEnumGenderNullableFilter<$PrismaModel>
+    _max?: NestedEnumGenderNullableFilter<$PrismaModel>
   }
 
-  export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedBoolFilter<$PrismaModel>
-    _max?: NestedBoolFilter<$PrismaModel>
+  export type NestedIntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | null
+    notIn?: number[] | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
   }
 
   export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
