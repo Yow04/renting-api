@@ -1,7 +1,9 @@
 import express from 'express';
+import dotenv from 'dotenv';
 import authRoute from './src/routes/Authroute.js';
+import tempRoute from './src/routes/tempRoute.js';
 
-
+dotenv.config();
 const app = express();
 const port = 3000;
 
@@ -10,6 +12,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // Use Router
 app.use('/auth', authRoute);
+app.use('/temp', tempRoute);
 
 // cek jika route tidak ditemukan
 app.use((req, res) => {
