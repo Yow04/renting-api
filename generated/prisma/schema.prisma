@@ -19,10 +19,22 @@ model User {
   username  String   @unique
   email     String   @unique
   password  String
-  gender    Gender
-  isActive  Boolean  @default(true)
+  gender    Gender?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+}
+
+model DetailLapangan {
+  id           String   @id @default(cuid())
+  nama         String
+  alamat       String
+  harga        Int
+  tipeLapangan String
+  linkGambar   String
+  noTelp       String
+  deskripsi    String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
 }
 
 enum Gender {

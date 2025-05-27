@@ -130,6 +130,19 @@ exports.Prisma.UserScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.DetailLapanganScalarFieldEnum = {
+  id: 'id',
+  nama: 'nama',
+  alamat: 'alamat',
+  harga: 'harga',
+  tipeLapangan: 'tipeLapangan',
+  linkGambar: 'linkGambar',
+  noTelp: 'noTelp',
+  deskripsi: 'deskripsi',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -146,13 +159,24 @@ exports.Prisma.UserOrderByRelevanceFieldEnum = {
   email: 'email',
   password: 'password'
 };
+
+exports.Prisma.DetailLapanganOrderByRelevanceFieldEnum = {
+  id: 'id',
+  nama: 'nama',
+  alamat: 'alamat',
+  tipeLapangan: 'tipeLapangan',
+  linkGambar: 'linkGambar',
+  noTelp: 'noTelp',
+  deskripsi: 'deskripsi'
+};
 exports.Gender = exports.$Enums.Gender = {
   Pria: 'Pria',
   Wanita: 'Wanita'
 };
 
 exports.Prisma.ModelName = {
-  User: 'User'
+  User: 'User',
+  DetailLapangan: 'DetailLapangan'
 };
 
 /**

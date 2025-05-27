@@ -18,6 +18,11 @@ export type PrismaPromise<T> = $Public.PrismaPromise<T>
  * 
  */
 export type User = $Result.DefaultSelection<Prisma.$UserPayload>
+/**
+ * Model DetailLapangan
+ * 
+ */
+export type DetailLapangan = $Result.DefaultSelection<Prisma.$DetailLapanganPayload>
 
 /**
  * Enums
@@ -170,6 +175,16 @@ export class PrismaClient<
     * ```
     */
   get user(): Prisma.UserDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.detailLapangan`: Exposes CRUD operations for the **DetailLapangan** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more DetailLapangans
+    * const detailLapangans = await prisma.detailLapangan.findMany()
+    * ```
+    */
+  get detailLapangan(): Prisma.DetailLapanganDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -610,7 +625,8 @@ export namespace Prisma {
 
 
   export const ModelName: {
-    User: 'User'
+    User: 'User',
+    DetailLapangan: 'DetailLapangan'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -629,7 +645,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user"
+      modelProps: "user" | "detailLapangan"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -696,6 +712,72 @@ export namespace Prisma {
           count: {
             args: Prisma.UserCountArgs<ExtArgs>
             result: $Utils.Optional<UserCountAggregateOutputType> | number
+          }
+        }
+      }
+      DetailLapangan: {
+        payload: Prisma.$DetailLapanganPayload<ExtArgs>
+        fields: Prisma.DetailLapanganFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.DetailLapanganFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DetailLapanganPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.DetailLapanganFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DetailLapanganPayload>
+          }
+          findFirst: {
+            args: Prisma.DetailLapanganFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DetailLapanganPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.DetailLapanganFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DetailLapanganPayload>
+          }
+          findMany: {
+            args: Prisma.DetailLapanganFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DetailLapanganPayload>[]
+          }
+          create: {
+            args: Prisma.DetailLapanganCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DetailLapanganPayload>
+          }
+          createMany: {
+            args: Prisma.DetailLapanganCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.DetailLapanganDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DetailLapanganPayload>
+          }
+          update: {
+            args: Prisma.DetailLapanganUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DetailLapanganPayload>
+          }
+          deleteMany: {
+            args: Prisma.DetailLapanganDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.DetailLapanganUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.DetailLapanganUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DetailLapanganPayload>
+          }
+          aggregate: {
+            args: Prisma.DetailLapanganAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateDetailLapangan>
+          }
+          groupBy: {
+            args: Prisma.DetailLapanganGroupByArgs<ExtArgs>
+            result: $Utils.Optional<DetailLapanganGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.DetailLapanganCountArgs<ExtArgs>
+            result: $Utils.Optional<DetailLapanganCountAggregateOutputType> | number
           }
         }
       }
@@ -784,6 +866,7 @@ export namespace Prisma {
   }
   export type GlobalOmitConfig = {
     user?: UserOmit
+    detailLapangan?: DetailLapanganOmit
   }
 
   /* Types for Logging */
@@ -1783,6 +1866,977 @@ export namespace Prisma {
 
 
   /**
+   * Model DetailLapangan
+   */
+
+  export type AggregateDetailLapangan = {
+    _count: DetailLapanganCountAggregateOutputType | null
+    _avg: DetailLapanganAvgAggregateOutputType | null
+    _sum: DetailLapanganSumAggregateOutputType | null
+    _min: DetailLapanganMinAggregateOutputType | null
+    _max: DetailLapanganMaxAggregateOutputType | null
+  }
+
+  export type DetailLapanganAvgAggregateOutputType = {
+    harga: number | null
+  }
+
+  export type DetailLapanganSumAggregateOutputType = {
+    harga: number | null
+  }
+
+  export type DetailLapanganMinAggregateOutputType = {
+    id: string | null
+    nama: string | null
+    alamat: string | null
+    harga: number | null
+    tipeLapangan: string | null
+    linkGambar: string | null
+    noTelp: string | null
+    deskripsi: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type DetailLapanganMaxAggregateOutputType = {
+    id: string | null
+    nama: string | null
+    alamat: string | null
+    harga: number | null
+    tipeLapangan: string | null
+    linkGambar: string | null
+    noTelp: string | null
+    deskripsi: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type DetailLapanganCountAggregateOutputType = {
+    id: number
+    nama: number
+    alamat: number
+    harga: number
+    tipeLapangan: number
+    linkGambar: number
+    noTelp: number
+    deskripsi: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type DetailLapanganAvgAggregateInputType = {
+    harga?: true
+  }
+
+  export type DetailLapanganSumAggregateInputType = {
+    harga?: true
+  }
+
+  export type DetailLapanganMinAggregateInputType = {
+    id?: true
+    nama?: true
+    alamat?: true
+    harga?: true
+    tipeLapangan?: true
+    linkGambar?: true
+    noTelp?: true
+    deskripsi?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type DetailLapanganMaxAggregateInputType = {
+    id?: true
+    nama?: true
+    alamat?: true
+    harga?: true
+    tipeLapangan?: true
+    linkGambar?: true
+    noTelp?: true
+    deskripsi?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type DetailLapanganCountAggregateInputType = {
+    id?: true
+    nama?: true
+    alamat?: true
+    harga?: true
+    tipeLapangan?: true
+    linkGambar?: true
+    noTelp?: true
+    deskripsi?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type DetailLapanganAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which DetailLapangan to aggregate.
+     */
+    where?: DetailLapanganWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of DetailLapangans to fetch.
+     */
+    orderBy?: DetailLapanganOrderByWithRelationInput | DetailLapanganOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: DetailLapanganWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` DetailLapangans from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` DetailLapangans.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned DetailLapangans
+    **/
+    _count?: true | DetailLapanganCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: DetailLapanganAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: DetailLapanganSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: DetailLapanganMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: DetailLapanganMaxAggregateInputType
+  }
+
+  export type GetDetailLapanganAggregateType<T extends DetailLapanganAggregateArgs> = {
+        [P in keyof T & keyof AggregateDetailLapangan]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateDetailLapangan[P]>
+      : GetScalarType<T[P], AggregateDetailLapangan[P]>
+  }
+
+
+
+
+  export type DetailLapanganGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: DetailLapanganWhereInput
+    orderBy?: DetailLapanganOrderByWithAggregationInput | DetailLapanganOrderByWithAggregationInput[]
+    by: DetailLapanganScalarFieldEnum[] | DetailLapanganScalarFieldEnum
+    having?: DetailLapanganScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: DetailLapanganCountAggregateInputType | true
+    _avg?: DetailLapanganAvgAggregateInputType
+    _sum?: DetailLapanganSumAggregateInputType
+    _min?: DetailLapanganMinAggregateInputType
+    _max?: DetailLapanganMaxAggregateInputType
+  }
+
+  export type DetailLapanganGroupByOutputType = {
+    id: string
+    nama: string
+    alamat: string
+    harga: number
+    tipeLapangan: string
+    linkGambar: string
+    noTelp: string
+    deskripsi: string
+    createdAt: Date
+    updatedAt: Date
+    _count: DetailLapanganCountAggregateOutputType | null
+    _avg: DetailLapanganAvgAggregateOutputType | null
+    _sum: DetailLapanganSumAggregateOutputType | null
+    _min: DetailLapanganMinAggregateOutputType | null
+    _max: DetailLapanganMaxAggregateOutputType | null
+  }
+
+  type GetDetailLapanganGroupByPayload<T extends DetailLapanganGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<DetailLapanganGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof DetailLapanganGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], DetailLapanganGroupByOutputType[P]>
+            : GetScalarType<T[P], DetailLapanganGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type DetailLapanganSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    nama?: boolean
+    alamat?: boolean
+    harga?: boolean
+    tipeLapangan?: boolean
+    linkGambar?: boolean
+    noTelp?: boolean
+    deskripsi?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["detailLapangan"]>
+
+
+
+  export type DetailLapanganSelectScalar = {
+    id?: boolean
+    nama?: boolean
+    alamat?: boolean
+    harga?: boolean
+    tipeLapangan?: boolean
+    linkGambar?: boolean
+    noTelp?: boolean
+    deskripsi?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type DetailLapanganOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "nama" | "alamat" | "harga" | "tipeLapangan" | "linkGambar" | "noTelp" | "deskripsi" | "createdAt" | "updatedAt", ExtArgs["result"]["detailLapangan"]>
+
+  export type $DetailLapanganPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "DetailLapangan"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      nama: string
+      alamat: string
+      harga: number
+      tipeLapangan: string
+      linkGambar: string
+      noTelp: string
+      deskripsi: string
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["detailLapangan"]>
+    composites: {}
+  }
+
+  type DetailLapanganGetPayload<S extends boolean | null | undefined | DetailLapanganDefaultArgs> = $Result.GetResult<Prisma.$DetailLapanganPayload, S>
+
+  type DetailLapanganCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<DetailLapanganFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: DetailLapanganCountAggregateInputType | true
+    }
+
+  export interface DetailLapanganDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['DetailLapangan'], meta: { name: 'DetailLapangan' } }
+    /**
+     * Find zero or one DetailLapangan that matches the filter.
+     * @param {DetailLapanganFindUniqueArgs} args - Arguments to find a DetailLapangan
+     * @example
+     * // Get one DetailLapangan
+     * const detailLapangan = await prisma.detailLapangan.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends DetailLapanganFindUniqueArgs>(args: SelectSubset<T, DetailLapanganFindUniqueArgs<ExtArgs>>): Prisma__DetailLapanganClient<$Result.GetResult<Prisma.$DetailLapanganPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one DetailLapangan that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {DetailLapanganFindUniqueOrThrowArgs} args - Arguments to find a DetailLapangan
+     * @example
+     * // Get one DetailLapangan
+     * const detailLapangan = await prisma.detailLapangan.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends DetailLapanganFindUniqueOrThrowArgs>(args: SelectSubset<T, DetailLapanganFindUniqueOrThrowArgs<ExtArgs>>): Prisma__DetailLapanganClient<$Result.GetResult<Prisma.$DetailLapanganPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first DetailLapangan that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DetailLapanganFindFirstArgs} args - Arguments to find a DetailLapangan
+     * @example
+     * // Get one DetailLapangan
+     * const detailLapangan = await prisma.detailLapangan.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends DetailLapanganFindFirstArgs>(args?: SelectSubset<T, DetailLapanganFindFirstArgs<ExtArgs>>): Prisma__DetailLapanganClient<$Result.GetResult<Prisma.$DetailLapanganPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first DetailLapangan that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DetailLapanganFindFirstOrThrowArgs} args - Arguments to find a DetailLapangan
+     * @example
+     * // Get one DetailLapangan
+     * const detailLapangan = await prisma.detailLapangan.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends DetailLapanganFindFirstOrThrowArgs>(args?: SelectSubset<T, DetailLapanganFindFirstOrThrowArgs<ExtArgs>>): Prisma__DetailLapanganClient<$Result.GetResult<Prisma.$DetailLapanganPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more DetailLapangans that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DetailLapanganFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all DetailLapangans
+     * const detailLapangans = await prisma.detailLapangan.findMany()
+     * 
+     * // Get first 10 DetailLapangans
+     * const detailLapangans = await prisma.detailLapangan.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const detailLapanganWithIdOnly = await prisma.detailLapangan.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends DetailLapanganFindManyArgs>(args?: SelectSubset<T, DetailLapanganFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DetailLapanganPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a DetailLapangan.
+     * @param {DetailLapanganCreateArgs} args - Arguments to create a DetailLapangan.
+     * @example
+     * // Create one DetailLapangan
+     * const DetailLapangan = await prisma.detailLapangan.create({
+     *   data: {
+     *     // ... data to create a DetailLapangan
+     *   }
+     * })
+     * 
+     */
+    create<T extends DetailLapanganCreateArgs>(args: SelectSubset<T, DetailLapanganCreateArgs<ExtArgs>>): Prisma__DetailLapanganClient<$Result.GetResult<Prisma.$DetailLapanganPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many DetailLapangans.
+     * @param {DetailLapanganCreateManyArgs} args - Arguments to create many DetailLapangans.
+     * @example
+     * // Create many DetailLapangans
+     * const detailLapangan = await prisma.detailLapangan.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends DetailLapanganCreateManyArgs>(args?: SelectSubset<T, DetailLapanganCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a DetailLapangan.
+     * @param {DetailLapanganDeleteArgs} args - Arguments to delete one DetailLapangan.
+     * @example
+     * // Delete one DetailLapangan
+     * const DetailLapangan = await prisma.detailLapangan.delete({
+     *   where: {
+     *     // ... filter to delete one DetailLapangan
+     *   }
+     * })
+     * 
+     */
+    delete<T extends DetailLapanganDeleteArgs>(args: SelectSubset<T, DetailLapanganDeleteArgs<ExtArgs>>): Prisma__DetailLapanganClient<$Result.GetResult<Prisma.$DetailLapanganPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one DetailLapangan.
+     * @param {DetailLapanganUpdateArgs} args - Arguments to update one DetailLapangan.
+     * @example
+     * // Update one DetailLapangan
+     * const detailLapangan = await prisma.detailLapangan.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends DetailLapanganUpdateArgs>(args: SelectSubset<T, DetailLapanganUpdateArgs<ExtArgs>>): Prisma__DetailLapanganClient<$Result.GetResult<Prisma.$DetailLapanganPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more DetailLapangans.
+     * @param {DetailLapanganDeleteManyArgs} args - Arguments to filter DetailLapangans to delete.
+     * @example
+     * // Delete a few DetailLapangans
+     * const { count } = await prisma.detailLapangan.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends DetailLapanganDeleteManyArgs>(args?: SelectSubset<T, DetailLapanganDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more DetailLapangans.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DetailLapanganUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many DetailLapangans
+     * const detailLapangan = await prisma.detailLapangan.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends DetailLapanganUpdateManyArgs>(args: SelectSubset<T, DetailLapanganUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one DetailLapangan.
+     * @param {DetailLapanganUpsertArgs} args - Arguments to update or create a DetailLapangan.
+     * @example
+     * // Update or create a DetailLapangan
+     * const detailLapangan = await prisma.detailLapangan.upsert({
+     *   create: {
+     *     // ... data to create a DetailLapangan
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the DetailLapangan we want to update
+     *   }
+     * })
+     */
+    upsert<T extends DetailLapanganUpsertArgs>(args: SelectSubset<T, DetailLapanganUpsertArgs<ExtArgs>>): Prisma__DetailLapanganClient<$Result.GetResult<Prisma.$DetailLapanganPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of DetailLapangans.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DetailLapanganCountArgs} args - Arguments to filter DetailLapangans to count.
+     * @example
+     * // Count the number of DetailLapangans
+     * const count = await prisma.detailLapangan.count({
+     *   where: {
+     *     // ... the filter for the DetailLapangans we want to count
+     *   }
+     * })
+    **/
+    count<T extends DetailLapanganCountArgs>(
+      args?: Subset<T, DetailLapanganCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], DetailLapanganCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a DetailLapangan.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DetailLapanganAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends DetailLapanganAggregateArgs>(args: Subset<T, DetailLapanganAggregateArgs>): Prisma.PrismaPromise<GetDetailLapanganAggregateType<T>>
+
+    /**
+     * Group by DetailLapangan.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DetailLapanganGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends DetailLapanganGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: DetailLapanganGroupByArgs['orderBy'] }
+        : { orderBy?: DetailLapanganGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, DetailLapanganGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetDetailLapanganGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the DetailLapangan model
+   */
+  readonly fields: DetailLapanganFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for DetailLapangan.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__DetailLapanganClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the DetailLapangan model
+   */
+  interface DetailLapanganFieldRefs {
+    readonly id: FieldRef<"DetailLapangan", 'String'>
+    readonly nama: FieldRef<"DetailLapangan", 'String'>
+    readonly alamat: FieldRef<"DetailLapangan", 'String'>
+    readonly harga: FieldRef<"DetailLapangan", 'Int'>
+    readonly tipeLapangan: FieldRef<"DetailLapangan", 'String'>
+    readonly linkGambar: FieldRef<"DetailLapangan", 'String'>
+    readonly noTelp: FieldRef<"DetailLapangan", 'String'>
+    readonly deskripsi: FieldRef<"DetailLapangan", 'String'>
+    readonly createdAt: FieldRef<"DetailLapangan", 'DateTime'>
+    readonly updatedAt: FieldRef<"DetailLapangan", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * DetailLapangan findUnique
+   */
+  export type DetailLapanganFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DetailLapangan
+     */
+    select?: DetailLapanganSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DetailLapangan
+     */
+    omit?: DetailLapanganOmit<ExtArgs> | null
+    /**
+     * Filter, which DetailLapangan to fetch.
+     */
+    where: DetailLapanganWhereUniqueInput
+  }
+
+  /**
+   * DetailLapangan findUniqueOrThrow
+   */
+  export type DetailLapanganFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DetailLapangan
+     */
+    select?: DetailLapanganSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DetailLapangan
+     */
+    omit?: DetailLapanganOmit<ExtArgs> | null
+    /**
+     * Filter, which DetailLapangan to fetch.
+     */
+    where: DetailLapanganWhereUniqueInput
+  }
+
+  /**
+   * DetailLapangan findFirst
+   */
+  export type DetailLapanganFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DetailLapangan
+     */
+    select?: DetailLapanganSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DetailLapangan
+     */
+    omit?: DetailLapanganOmit<ExtArgs> | null
+    /**
+     * Filter, which DetailLapangan to fetch.
+     */
+    where?: DetailLapanganWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of DetailLapangans to fetch.
+     */
+    orderBy?: DetailLapanganOrderByWithRelationInput | DetailLapanganOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for DetailLapangans.
+     */
+    cursor?: DetailLapanganWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` DetailLapangans from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` DetailLapangans.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of DetailLapangans.
+     */
+    distinct?: DetailLapanganScalarFieldEnum | DetailLapanganScalarFieldEnum[]
+  }
+
+  /**
+   * DetailLapangan findFirstOrThrow
+   */
+  export type DetailLapanganFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DetailLapangan
+     */
+    select?: DetailLapanganSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DetailLapangan
+     */
+    omit?: DetailLapanganOmit<ExtArgs> | null
+    /**
+     * Filter, which DetailLapangan to fetch.
+     */
+    where?: DetailLapanganWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of DetailLapangans to fetch.
+     */
+    orderBy?: DetailLapanganOrderByWithRelationInput | DetailLapanganOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for DetailLapangans.
+     */
+    cursor?: DetailLapanganWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` DetailLapangans from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` DetailLapangans.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of DetailLapangans.
+     */
+    distinct?: DetailLapanganScalarFieldEnum | DetailLapanganScalarFieldEnum[]
+  }
+
+  /**
+   * DetailLapangan findMany
+   */
+  export type DetailLapanganFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DetailLapangan
+     */
+    select?: DetailLapanganSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DetailLapangan
+     */
+    omit?: DetailLapanganOmit<ExtArgs> | null
+    /**
+     * Filter, which DetailLapangans to fetch.
+     */
+    where?: DetailLapanganWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of DetailLapangans to fetch.
+     */
+    orderBy?: DetailLapanganOrderByWithRelationInput | DetailLapanganOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing DetailLapangans.
+     */
+    cursor?: DetailLapanganWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` DetailLapangans from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` DetailLapangans.
+     */
+    skip?: number
+    distinct?: DetailLapanganScalarFieldEnum | DetailLapanganScalarFieldEnum[]
+  }
+
+  /**
+   * DetailLapangan create
+   */
+  export type DetailLapanganCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DetailLapangan
+     */
+    select?: DetailLapanganSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DetailLapangan
+     */
+    omit?: DetailLapanganOmit<ExtArgs> | null
+    /**
+     * The data needed to create a DetailLapangan.
+     */
+    data: XOR<DetailLapanganCreateInput, DetailLapanganUncheckedCreateInput>
+  }
+
+  /**
+   * DetailLapangan createMany
+   */
+  export type DetailLapanganCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many DetailLapangans.
+     */
+    data: DetailLapanganCreateManyInput | DetailLapanganCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * DetailLapangan update
+   */
+  export type DetailLapanganUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DetailLapangan
+     */
+    select?: DetailLapanganSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DetailLapangan
+     */
+    omit?: DetailLapanganOmit<ExtArgs> | null
+    /**
+     * The data needed to update a DetailLapangan.
+     */
+    data: XOR<DetailLapanganUpdateInput, DetailLapanganUncheckedUpdateInput>
+    /**
+     * Choose, which DetailLapangan to update.
+     */
+    where: DetailLapanganWhereUniqueInput
+  }
+
+  /**
+   * DetailLapangan updateMany
+   */
+  export type DetailLapanganUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update DetailLapangans.
+     */
+    data: XOR<DetailLapanganUpdateManyMutationInput, DetailLapanganUncheckedUpdateManyInput>
+    /**
+     * Filter which DetailLapangans to update
+     */
+    where?: DetailLapanganWhereInput
+    /**
+     * Limit how many DetailLapangans to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * DetailLapangan upsert
+   */
+  export type DetailLapanganUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DetailLapangan
+     */
+    select?: DetailLapanganSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DetailLapangan
+     */
+    omit?: DetailLapanganOmit<ExtArgs> | null
+    /**
+     * The filter to search for the DetailLapangan to update in case it exists.
+     */
+    where: DetailLapanganWhereUniqueInput
+    /**
+     * In case the DetailLapangan found by the `where` argument doesn't exist, create a new DetailLapangan with this data.
+     */
+    create: XOR<DetailLapanganCreateInput, DetailLapanganUncheckedCreateInput>
+    /**
+     * In case the DetailLapangan was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<DetailLapanganUpdateInput, DetailLapanganUncheckedUpdateInput>
+  }
+
+  /**
+   * DetailLapangan delete
+   */
+  export type DetailLapanganDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DetailLapangan
+     */
+    select?: DetailLapanganSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DetailLapangan
+     */
+    omit?: DetailLapanganOmit<ExtArgs> | null
+    /**
+     * Filter which DetailLapangan to delete.
+     */
+    where: DetailLapanganWhereUniqueInput
+  }
+
+  /**
+   * DetailLapangan deleteMany
+   */
+  export type DetailLapanganDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which DetailLapangans to delete
+     */
+    where?: DetailLapanganWhereInput
+    /**
+     * Limit how many DetailLapangans to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * DetailLapangan without action
+   */
+  export type DetailLapanganDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DetailLapangan
+     */
+    select?: DetailLapanganSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DetailLapangan
+     */
+    omit?: DetailLapanganOmit<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -1809,6 +2863,22 @@ export namespace Prisma {
   export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
 
 
+  export const DetailLapanganScalarFieldEnum: {
+    id: 'id',
+    nama: 'nama',
+    alamat: 'alamat',
+    harga: 'harga',
+    tipeLapangan: 'tipeLapangan',
+    linkGambar: 'linkGambar',
+    noTelp: 'noTelp',
+    deskripsi: 'deskripsi',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type DetailLapanganScalarFieldEnum = (typeof DetailLapanganScalarFieldEnum)[keyof typeof DetailLapanganScalarFieldEnum]
+
+
   export const SortOrder: {
     asc: 'asc',
     desc: 'desc'
@@ -1833,6 +2903,19 @@ export namespace Prisma {
   };
 
   export type UserOrderByRelevanceFieldEnum = (typeof UserOrderByRelevanceFieldEnum)[keyof typeof UserOrderByRelevanceFieldEnum]
+
+
+  export const DetailLapanganOrderByRelevanceFieldEnum: {
+    id: 'id',
+    nama: 'nama',
+    alamat: 'alamat',
+    tipeLapangan: 'tipeLapangan',
+    linkGambar: 'linkGambar',
+    noTelp: 'noTelp',
+    deskripsi: 'deskripsi'
+  };
+
+  export type DetailLapanganOrderByRelevanceFieldEnum = (typeof DetailLapanganOrderByRelevanceFieldEnum)[keyof typeof DetailLapanganOrderByRelevanceFieldEnum]
 
 
   /**
@@ -1865,6 +2948,13 @@ export namespace Prisma {
    * Reference to a field of type 'Int'
    */
   export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
+    
+
+
+  /**
+   * Reference to a field of type 'Float'
+   */
+  export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
     
   /**
    * Deep Input Types
@@ -1934,6 +3024,86 @@ export namespace Prisma {
     updatedAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
   }
 
+  export type DetailLapanganWhereInput = {
+    AND?: DetailLapanganWhereInput | DetailLapanganWhereInput[]
+    OR?: DetailLapanganWhereInput[]
+    NOT?: DetailLapanganWhereInput | DetailLapanganWhereInput[]
+    id?: StringFilter<"DetailLapangan"> | string
+    nama?: StringFilter<"DetailLapangan"> | string
+    alamat?: StringFilter<"DetailLapangan"> | string
+    harga?: IntFilter<"DetailLapangan"> | number
+    tipeLapangan?: StringFilter<"DetailLapangan"> | string
+    linkGambar?: StringFilter<"DetailLapangan"> | string
+    noTelp?: StringFilter<"DetailLapangan"> | string
+    deskripsi?: StringFilter<"DetailLapangan"> | string
+    createdAt?: DateTimeFilter<"DetailLapangan"> | Date | string
+    updatedAt?: DateTimeFilter<"DetailLapangan"> | Date | string
+  }
+
+  export type DetailLapanganOrderByWithRelationInput = {
+    id?: SortOrder
+    nama?: SortOrder
+    alamat?: SortOrder
+    harga?: SortOrder
+    tipeLapangan?: SortOrder
+    linkGambar?: SortOrder
+    noTelp?: SortOrder
+    deskripsi?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _relevance?: DetailLapanganOrderByRelevanceInput
+  }
+
+  export type DetailLapanganWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: DetailLapanganWhereInput | DetailLapanganWhereInput[]
+    OR?: DetailLapanganWhereInput[]
+    NOT?: DetailLapanganWhereInput | DetailLapanganWhereInput[]
+    nama?: StringFilter<"DetailLapangan"> | string
+    alamat?: StringFilter<"DetailLapangan"> | string
+    harga?: IntFilter<"DetailLapangan"> | number
+    tipeLapangan?: StringFilter<"DetailLapangan"> | string
+    linkGambar?: StringFilter<"DetailLapangan"> | string
+    noTelp?: StringFilter<"DetailLapangan"> | string
+    deskripsi?: StringFilter<"DetailLapangan"> | string
+    createdAt?: DateTimeFilter<"DetailLapangan"> | Date | string
+    updatedAt?: DateTimeFilter<"DetailLapangan"> | Date | string
+  }, "id">
+
+  export type DetailLapanganOrderByWithAggregationInput = {
+    id?: SortOrder
+    nama?: SortOrder
+    alamat?: SortOrder
+    harga?: SortOrder
+    tipeLapangan?: SortOrder
+    linkGambar?: SortOrder
+    noTelp?: SortOrder
+    deskripsi?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: DetailLapanganCountOrderByAggregateInput
+    _avg?: DetailLapanganAvgOrderByAggregateInput
+    _max?: DetailLapanganMaxOrderByAggregateInput
+    _min?: DetailLapanganMinOrderByAggregateInput
+    _sum?: DetailLapanganSumOrderByAggregateInput
+  }
+
+  export type DetailLapanganScalarWhereWithAggregatesInput = {
+    AND?: DetailLapanganScalarWhereWithAggregatesInput | DetailLapanganScalarWhereWithAggregatesInput[]
+    OR?: DetailLapanganScalarWhereWithAggregatesInput[]
+    NOT?: DetailLapanganScalarWhereWithAggregatesInput | DetailLapanganScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"DetailLapangan"> | string
+    nama?: StringWithAggregatesFilter<"DetailLapangan"> | string
+    alamat?: StringWithAggregatesFilter<"DetailLapangan"> | string
+    harga?: IntWithAggregatesFilter<"DetailLapangan"> | number
+    tipeLapangan?: StringWithAggregatesFilter<"DetailLapangan"> | string
+    linkGambar?: StringWithAggregatesFilter<"DetailLapangan"> | string
+    noTelp?: StringWithAggregatesFilter<"DetailLapangan"> | string
+    deskripsi?: StringWithAggregatesFilter<"DetailLapangan"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"DetailLapangan"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"DetailLapangan"> | Date | string
+  }
+
   export type UserCreateInput = {
     id?: string
     username: string
@@ -2000,6 +3170,97 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     gender?: NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type DetailLapanganCreateInput = {
+    id?: string
+    nama: string
+    alamat: string
+    harga: number
+    tipeLapangan: string
+    linkGambar: string
+    noTelp: string
+    deskripsi: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type DetailLapanganUncheckedCreateInput = {
+    id?: string
+    nama: string
+    alamat: string
+    harga: number
+    tipeLapangan: string
+    linkGambar: string
+    noTelp: string
+    deskripsi: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type DetailLapanganUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nama?: StringFieldUpdateOperationsInput | string
+    alamat?: StringFieldUpdateOperationsInput | string
+    harga?: IntFieldUpdateOperationsInput | number
+    tipeLapangan?: StringFieldUpdateOperationsInput | string
+    linkGambar?: StringFieldUpdateOperationsInput | string
+    noTelp?: StringFieldUpdateOperationsInput | string
+    deskripsi?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type DetailLapanganUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nama?: StringFieldUpdateOperationsInput | string
+    alamat?: StringFieldUpdateOperationsInput | string
+    harga?: IntFieldUpdateOperationsInput | number
+    tipeLapangan?: StringFieldUpdateOperationsInput | string
+    linkGambar?: StringFieldUpdateOperationsInput | string
+    noTelp?: StringFieldUpdateOperationsInput | string
+    deskripsi?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type DetailLapanganCreateManyInput = {
+    id?: string
+    nama: string
+    alamat: string
+    harga: number
+    tipeLapangan: string
+    linkGambar: string
+    noTelp: string
+    deskripsi: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type DetailLapanganUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nama?: StringFieldUpdateOperationsInput | string
+    alamat?: StringFieldUpdateOperationsInput | string
+    harga?: IntFieldUpdateOperationsInput | number
+    tipeLapangan?: StringFieldUpdateOperationsInput | string
+    linkGambar?: StringFieldUpdateOperationsInput | string
+    noTelp?: StringFieldUpdateOperationsInput | string
+    deskripsi?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type DetailLapanganUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nama?: StringFieldUpdateOperationsInput | string
+    alamat?: StringFieldUpdateOperationsInput | string
+    harga?: IntFieldUpdateOperationsInput | number
+    tipeLapangan?: StringFieldUpdateOperationsInput | string
+    linkGambar?: StringFieldUpdateOperationsInput | string
+    noTelp?: StringFieldUpdateOperationsInput | string
+    deskripsi?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -2120,6 +3381,86 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
+  export type IntFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[]
+    notIn?: number[]
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntFilter<$PrismaModel> | number
+  }
+
+  export type DetailLapanganOrderByRelevanceInput = {
+    fields: DetailLapanganOrderByRelevanceFieldEnum | DetailLapanganOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type DetailLapanganCountOrderByAggregateInput = {
+    id?: SortOrder
+    nama?: SortOrder
+    alamat?: SortOrder
+    harga?: SortOrder
+    tipeLapangan?: SortOrder
+    linkGambar?: SortOrder
+    noTelp?: SortOrder
+    deskripsi?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type DetailLapanganAvgOrderByAggregateInput = {
+    harga?: SortOrder
+  }
+
+  export type DetailLapanganMaxOrderByAggregateInput = {
+    id?: SortOrder
+    nama?: SortOrder
+    alamat?: SortOrder
+    harga?: SortOrder
+    tipeLapangan?: SortOrder
+    linkGambar?: SortOrder
+    noTelp?: SortOrder
+    deskripsi?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type DetailLapanganMinOrderByAggregateInput = {
+    id?: SortOrder
+    nama?: SortOrder
+    alamat?: SortOrder
+    harga?: SortOrder
+    tipeLapangan?: SortOrder
+    linkGambar?: SortOrder
+    noTelp?: SortOrder
+    deskripsi?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type DetailLapanganSumOrderByAggregateInput = {
+    harga?: SortOrder
+  }
+
+  export type IntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[]
+    notIn?: number[]
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
+  }
+
   export type StringFieldUpdateOperationsInput = {
     set?: string
   }
@@ -2130,6 +3471,14 @@ export namespace Prisma {
 
   export type DateTimeFieldUpdateOperationsInput = {
     set?: Date | string
+  }
+
+  export type IntFieldUpdateOperationsInput = {
+    set?: number
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -2227,6 +3576,33 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedDateTimeFilter<$PrismaModel>
     _max?: NestedDateTimeFilter<$PrismaModel>
+  }
+
+  export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[]
+    notIn?: number[]
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
+  }
+
+  export type NestedFloatFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[]
+    notIn?: number[]
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatFilter<$PrismaModel> | number
   }
 
 
