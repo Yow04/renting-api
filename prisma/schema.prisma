@@ -29,3 +29,16 @@ enum user_role {
   Pengelola
   Penyewa
 }
+
+model DetailLapangan {
+  id           String   @id @default(cuid())
+  nama         String
+  alamat       String
+  harga        Int
+  tipeLapangan String
+  linkGambar   String
+  noTelp       String
+  deskripsi    String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
