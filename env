@@ -1,0 +1,17 @@
+# Environment variables declared in this file are automatically made available to Prisma.
+# See the documentation for more detail: https://pris.ly/d/prisma-schema#accessing-environment-variables-from-the-schema
+
+# Prisma supports the native connection string format for PostgreSQL, MySQL, SQLite, SQL Server, MongoDB and CockroachDB.
+# See the documentation for all the connection string options: https://pris.ly/d/connection-strings
+
+DATABASE_URL="mysql://root:@localhost:3306/sewa_db"
+
+
+# JWT secret key and refresh token secret key
+# These keys are used to sign and verify JWT tokens for authentication and authorization purposes.
+# It is important to keep these keys secure and not expose them publicly.
+ACCES_TOKEN="e4a98cb5a6f3ff7e2f5c86631ae348c08f062f576fa162f39608abd8243f9de785785cedcb2b916fa0ed36810477fae74b508c3662f06e066a6f254b8a653e184d81d837745f408256a3f69ab7a90b93360a3e0b80f56ce3aef774d141af4c733e32a3c78ea739174b691b225303bc14994f6e2a99d1b7a344ecef1f5799e5ef"
+REFRESH_TOKEN="e44ac11d8bbd19cc8b8b627b59fd4525a87ec22527f0706e8852af616c889e8328f68e1afa4058fb2ab6250d3f1fddf2aef5bfb78b8a261450d758aa1f14cd9584af60b2ca904e0d7d29869c6ae730dcf40fafc4bf4eaef0120825ce8d419e85383c84a64b2819dbccb902e97fc1e14152d00c18a903fe09ffbbee20b27e1ad4"
+
+
+
