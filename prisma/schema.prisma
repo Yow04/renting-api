@@ -9,13 +9,13 @@ datasource db {
 }
 
 model user {
-  id        String       @id
+  id        String       @id @default(uuid())
   username  String       @unique(map: "User_username_key")
   email     String       @unique(map: "User_email_key")
   password  String
   gender    user_gender?
   createdAt DateTime     @default(now())
-  updatedAt DateTime
+  updatedAt DateTime?
   role      user_role?
   nomor     String?
 }

@@ -4,21 +4,19 @@ import prisma from '../../prisma/prisma.js';
 
 export const register = async (req, res) => {
     // Untuk melakukan cek apakah semua kolom sudah diisi
-    const { username, email, password } = req.body;
+    const { username, email, password, nomor } = req.body;
 
     if (!username || !email || !password) {
         return res.status(400).json({
             status: 'error',
-            message: 'Semua kolom harus diisi',
-            data: error
+            message: 'Semua kolom harus diisi'
         })
     }
     // Untuk melakukan cek apakah password sudah lebih dari 8 karakter
     if (password.length < 8) {
         return res.status(400).json({
             status: 'error',
-            message: 'Password harus lebih dari 8 karakter', 
-            data: error
+            message: 'Password harus lebih dari 8 karakter'
         });
     }
 
@@ -40,9 +38,10 @@ export const register = async (req, res) => {
     const hashedPassword = await bcrypt.hash(password, 10);
     await prisma.user.create({
       data: {
-        username,
-        email,
-        password: hashedPassword
+        username : username,
+        email: email,
+        password: hashedPassword,
+        nomor : nomor
       }
     });
 
