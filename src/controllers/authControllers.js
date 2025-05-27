@@ -91,7 +91,7 @@ export const login = async (req, res) => {
         }
 
         // Penambahan token
-        // Menggunakan JWT untuk membuat token akses dan refresh
+        // Menggunakan JWT untuk membuat token akses
         const payload = {
             userId: user.id,
             email: user.email,

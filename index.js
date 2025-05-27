@@ -1,11 +1,15 @@
 import express from 'express';
 import dotenv from 'dotenv';
+import cors from 'cors';
 import authRoute from './src/routes/Authroute.js';
 import tempRoute from './src/routes/tempRoute.js';
 
 dotenv.config();
 const app = express();
 const port = 3000;
+
+// CORS
+app.use(cors())
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
