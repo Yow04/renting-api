@@ -2,8 +2,9 @@ import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
 import authRoute from "./src/routes/Authroute.js";
-import tempRoute from "./src/routes/tempRoute.js";
+import profileRoute from "./src/routes/profileRoute.js";
 import lapanganRoute from "./src/routes/lapanganRoute.js";
+import roleRoute from "./src/routes/roleRoute.js";
 
 dotenv.config();
 const app = express();
@@ -17,8 +18,9 @@ app.use(express.urlencoded({ extended: true }));
 
 // Use Router
 app.use("/auth", authRoute);
-app.use("/temp", tempRoute);
+app.use("/user", profileRoute);
 app.use("/lapangan", lapanganRoute);
+app.use("/role", roleRoute);
 
 // cek jika route tidak ditemukan
 app.use((req, res) => {
