@@ -21,7 +21,7 @@ const getByIdLapangan = async (req, res) => {
   const { id } = req.params;
   try {
     const lapangan = await prisma.detailLapangan.findUnique({
-      where: { id: parseInt(id) },
+      where: { id: id },
     });
     if (!lapangan) {
       return res.status(404).json({
@@ -91,20 +91,13 @@ const inputDetailLapangan = async (req, res) => {
 };
 
 const updateDetailLapangan = async (req, res) => {
-  if (role !== "admin") {
-    return res.status(403).json({
-      status: "error",
-      message: "Akses ditolak, hanya admin yang dapat menambahkan lapangan",
-    });
-  }
-
   const { id } = req.params;
   const { nama, alamat, harga, tipeLapangan, linkGambar, noTelp, deskripsi } =
     req.body;
 
   try {
     const updatedLapangan = await prisma.detailLapangan.update({
-      where: { id: parseInt(id) },
+      where: { id: id },
       data: {
         nama,
         alamat,
