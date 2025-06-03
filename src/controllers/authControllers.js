@@ -4,7 +4,7 @@ import prisma from "../../prisma/prisma.js";
 
 export const register = async (req, res) => {
   // Untuk melakukan cek apakah semua kolom sudah diisi
-  const { username, email, password, nomor } = req.body;
+  const { username, email, password, nomor, role } = req.body;
 
   if (!username || !email || !password) {
     return res.status(400).json({
@@ -42,6 +42,8 @@ export const register = async (req, res) => {
         email: email,
         password: hashedPassword,
         nomor: nomor,
+        role: role || "Penyewa", // Default role is 'penyewa' if not provided
+        role: role || "Pengelola",
       },
     });
 
@@ -95,6 +97,7 @@ export const login = async (req, res) => {
       userId: user.id,
       email: user.email,
       username: user.username,
+      role: user.role,
     };
     const accesToken = jwt.sign(payload, process.env.ACCES_TOKEN, {
       expiresIn: "1h",
@@ -107,7 +110,8 @@ export const login = async (req, res) => {
         id: user.id,
         username: user.username,
         email: user.email,
-        nomor: user.nomor
+        nomor: user.nomor,
+        role: user.role,
       },
     });
   } catch (error) {

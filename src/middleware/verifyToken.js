@@ -16,7 +16,10 @@ export const verifyToken = (req, res, next) => {
             message: 'Token tidak valid',
         });
         }
-        req.userId = decoded.id;
+        req.userId = {
+            id: decoded.id,
+            role: decoded.role,
+        }
         next();
     });
     }

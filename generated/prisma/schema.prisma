@@ -20,18 +20,8 @@ model user {
   nomor     String?
 }
 
-enum user_gender {
-  Pria
-  Wanita
-}
-
-enum user_role {
-  Pengelola
-  Penyewa
-}
-
-model DetailLapangan {
-  id           String   @id @default(cuid())
+model detaillapangan {
+  id           String   @id
   nama         String
   alamat       String
   harga        Int
@@ -40,5 +30,15 @@ model DetailLapangan {
   noTelp       String
   deskripsi    String
   createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
+  updatedAt    DateTime
+}
+
+enum user_gender {
+  Pria
+  Wanita
+}
+
+enum user_role {
+  Pengelola
+  Penyewa
 }
