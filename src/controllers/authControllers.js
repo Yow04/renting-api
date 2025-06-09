@@ -42,7 +42,7 @@ export const register = async (req, res) => {
         email: email,
         password: hashedPassword,
         nomor: nomor,
-        role: role || "User", //default role jika tidak ada yang diberikan
+        role: role || "Penyewa", // Default role is 'penyewa' if not provided
       },
     });
 
