@@ -37,8 +37,8 @@ export type user_gender = (typeof user_gender)[keyof typeof user_gender]
 
 
 export const user_role: {
-  Pengelola: 'Pengelola',
-  Penyewa: 'Penyewa'
+  Admin: 'Admin',
+  User: 'User'
 };
 
 export type user_role = (typeof user_role)[keyof typeof user_role]
@@ -2104,7 +2104,7 @@ export namespace Prisma {
     noTelp: string
     deskripsi: string
     createdAt: Date
-    updatedAt: Date
+    updatedAt: Date | null
     _count: DetailLapanganCountAggregateOutputType | null
     _avg: DetailLapanganAvgAggregateOutputType | null
     _sum: DetailLapanganSumAggregateOutputType | null
@@ -2169,7 +2169,7 @@ export namespace Prisma {
       noTelp: string
       deskripsi: string
       createdAt: Date
-      updatedAt: Date
+      updatedAt: Date | null
     }, ExtArgs["result"]["detailLapangan"]>
     composites: {}
   }
@@ -3091,7 +3091,7 @@ export namespace Prisma {
     noTelp?: StringFilter<"detailLapangan"> | string
     deskripsi?: StringFilter<"detailLapangan"> | string
     createdAt?: DateTimeFilter<"detailLapangan"> | Date | string
-    updatedAt?: DateTimeFilter<"detailLapangan"> | Date | string
+    updatedAt?: DateTimeNullableFilter<"detailLapangan"> | Date | string | null
   }
 
   export type detailLapanganOrderByWithRelationInput = {
@@ -3104,7 +3104,7 @@ export namespace Prisma {
     noTelp?: SortOrder
     deskripsi?: SortOrder
     createdAt?: SortOrder
-    updatedAt?: SortOrder
+    updatedAt?: SortOrderInput | SortOrder
     _relevance?: detailLapanganOrderByRelevanceInput
   }
 
@@ -3121,7 +3121,7 @@ export namespace Prisma {
     noTelp?: StringFilter<"detailLapangan"> | string
     deskripsi?: StringFilter<"detailLapangan"> | string
     createdAt?: DateTimeFilter<"detailLapangan"> | Date | string
-    updatedAt?: DateTimeFilter<"detailLapangan"> | Date | string
+    updatedAt?: DateTimeNullableFilter<"detailLapangan"> | Date | string | null
   }, "id">
 
   export type detailLapanganOrderByWithAggregationInput = {
@@ -3134,7 +3134,7 @@ export namespace Prisma {
     noTelp?: SortOrder
     deskripsi?: SortOrder
     createdAt?: SortOrder
-    updatedAt?: SortOrder
+    updatedAt?: SortOrderInput | SortOrder
     _count?: detailLapanganCountOrderByAggregateInput
     _avg?: detailLapanganAvgOrderByAggregateInput
     _max?: detailLapanganMaxOrderByAggregateInput
@@ -3155,7 +3155,7 @@ export namespace Prisma {
     noTelp?: StringWithAggregatesFilter<"detailLapangan"> | string
     deskripsi?: StringWithAggregatesFilter<"detailLapangan"> | string
     createdAt?: DateTimeWithAggregatesFilter<"detailLapangan"> | Date | string
-    updatedAt?: DateTimeWithAggregatesFilter<"detailLapangan"> | Date | string
+    updatedAt?: DateTimeNullableWithAggregatesFilter<"detailLapangan"> | Date | string | null
   }
 
   export type userCreateInput = {
@@ -3243,7 +3243,7 @@ export namespace Prisma {
   }
 
   export type detailLapanganCreateInput = {
-    id: string
+    id?: string
     nama: string
     alamat: string
     harga: number
@@ -3252,11 +3252,11 @@ export namespace Prisma {
     noTelp: string
     deskripsi: string
     createdAt?: Date | string
-    updatedAt: Date | string
+    updatedAt?: Date | string | null
   }
 
   export type detailLapanganUncheckedCreateInput = {
-    id: string
+    id?: string
     nama: string
     alamat: string
     harga: number
@@ -3265,7 +3265,7 @@ export namespace Prisma {
     noTelp: string
     deskripsi: string
     createdAt?: Date | string
-    updatedAt: Date | string
+    updatedAt?: Date | string | null
   }
 
   export type detailLapanganUpdateInput = {
@@ -3278,7 +3278,7 @@ export namespace Prisma {
     noTelp?: StringFieldUpdateOperationsInput | string
     deskripsi?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type detailLapanganUncheckedUpdateInput = {
@@ -3291,11 +3291,11 @@ export namespace Prisma {
     noTelp?: StringFieldUpdateOperationsInput | string
     deskripsi?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type detailLapanganCreateManyInput = {
-    id: string
+    id?: string
     nama: string
     alamat: string
     harga: number
@@ -3304,7 +3304,7 @@ export namespace Prisma {
     noTelp: string
     deskripsi: string
     createdAt?: Date | string
-    updatedAt: Date | string
+    updatedAt?: Date | string | null
   }
 
   export type detailLapanganUpdateManyMutationInput = {
@@ -3317,7 +3317,7 @@ export namespace Prisma {
     noTelp?: StringFieldUpdateOperationsInput | string
     deskripsi?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type detailLapanganUncheckedUpdateManyInput = {
@@ -3330,7 +3330,7 @@ export namespace Prisma {
     noTelp?: StringFieldUpdateOperationsInput | string
     deskripsi?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type StringFilter<$PrismaModel = never> = {

@@ -21,7 +21,7 @@ model user {
 }
 
 model detailLapangan {
-  id           String   @id
+  id           String    @id @default(uuid())
   nama         String
   alamat       String
   harga        Int
@@ -29,8 +29,8 @@ model detailLapangan {
   linkGambar   String
   noTelp       String
   deskripsi    String
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime?
 }
 
 enum user_gender {
@@ -39,6 +39,6 @@ enum user_gender {
 }
 
 enum user_role {
-  Pengelola
-  Penyewa
+  Admin
+  User
 }

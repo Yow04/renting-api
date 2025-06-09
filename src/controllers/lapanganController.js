@@ -82,6 +82,7 @@ const inputDetailLapangan = async (req, res) => {
       data: newLapangan,
     });
   } catch (error) {
+    console.log("ERROR REGISTER:", error);
     res.status(500).json({
       status: "error",
       message: "Gagal menambahkan lapangan",
