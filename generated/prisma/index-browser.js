@@ -178,8 +178,8 @@ exports.user_gender = exports.$Enums.user_gender = {
 };
 
 exports.user_role = exports.$Enums.user_role = {
-  Pengelola: 'Pengelola',
-  Penyewa: 'Penyewa'
+  Admin: 'Admin',
+  User: 'User'
 };
 
 exports.Prisma.ModelName = {

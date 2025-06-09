@@ -1,5 +1,5 @@
 export const MidPenyewa = (req, res, next) => {
-    if (req.userId.role !== 'penyewa') {
+    if (req.userId.role !== 'user') {
         return next();
     }
     return res.status(403).json({

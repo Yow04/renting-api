@@ -5,16 +5,16 @@ import { MidPenyewa } from '../middleware/MIdPenyewa.js';
 
 const Router = express.Router();
 
-Router.get('/pengelola', verifyToken, MidPengelola, (req, res) => {
+Router.get('/admin', verifyToken, MidPengelola, (req, res) => {
     return res.status(200).json({
         status: 'success',
-        message: 'Ini untuk pengelola',
+        message: 'Ini untuk admin',
     });
 });
-Router.get('/penyewa', verifyToken, MidPenyewa, (req, res) => {
+Router.get('/user', verifyToken, MidPenyewa, (req, res) => {
     return res.status(200).json({
         status: 'success',
-        message: 'Ini untuk penyewa',
+        message: 'Ini untuk user',
     });
 });
 

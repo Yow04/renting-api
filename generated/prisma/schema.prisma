@@ -39,6 +39,6 @@ enum user_gender {
 }
 
 enum user_role {
-  Pengelola
-  Penyewa
+  Admin
+  User
 }

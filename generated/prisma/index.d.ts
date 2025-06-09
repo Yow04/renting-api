@@ -37,8 +37,8 @@ export type user_gender = (typeof user_gender)[keyof typeof user_gender]
 
 
 export const user_role: {
-  Pengelola: 'Pengelola',
-  Penyewa: 'Penyewa'
+  Admin: 'Admin',
+  User: 'User'
 };
 
 export type user_role = (typeof user_role)[keyof typeof user_role]
