@@ -43,7 +43,6 @@ export const register = async (req, res) => {
         password: hashedPassword,
         nomor: nomor,
         role: role || "User", //default role jika tidak ada yang diberikan
-        role: role || "Admin",
       },
     });
 
