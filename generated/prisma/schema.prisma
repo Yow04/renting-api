@@ -20,7 +20,7 @@ model user {
   nomor     String?
 }
 
-model detaillapangan {
+model detailLapangan {
   id           String   @id
   nama         String
   alamat       String

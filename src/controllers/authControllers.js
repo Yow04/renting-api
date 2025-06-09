@@ -43,7 +43,7 @@ export const register = async (req, res) => {
         password: hashedPassword,
         nomor: nomor,
         role: role || "Penyewa", // Default role is 'penyewa' if not provided
-        role: role || "Pengelola",
+        // role: role || "Pengelola",
       },
     });
 

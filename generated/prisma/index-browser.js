@@ -132,7 +132,7 @@ exports.Prisma.UserScalarFieldEnum = {
   nomor: 'nomor'
 };
 
-exports.Prisma.DetaillapanganScalarFieldEnum = {
+exports.Prisma.DetailLapanganScalarFieldEnum = {
   id: 'id',
   nama: 'nama',
   alamat: 'alamat',
@@ -163,7 +163,7 @@ exports.Prisma.userOrderByRelevanceFieldEnum = {
   nomor: 'nomor'
 };
 
-exports.Prisma.detaillapanganOrderByRelevanceFieldEnum = {
+exports.Prisma.detailLapanganOrderByRelevanceFieldEnum = {
   id: 'id',
   nama: 'nama',
   alamat: 'alamat',
@@ -184,7 +184,7 @@ exports.user_role = exports.$Enums.user_role = {
 
 exports.Prisma.ModelName = {
   user: 'user',
-  detaillapangan: 'detaillapangan'
+  detailLapangan: 'detailLapangan'
 };
 
 /**
