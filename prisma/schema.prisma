@@ -18,6 +18,8 @@ model user {
   updatedAt DateTime?
   role      user_role?
   nomor     String?
+
+  bookings booking[]
 }
 
 model detailLapangan {
@@ -31,6 +33,31 @@ model detailLapangan {
   deskripsi    String
   createdAt    DateTime  @default(now())
   updatedAt    DateTime?
+
+  bookings booking[]
+
+}
+
+model booking {
+  id           String     @id @default(uuid())
+  userId       String     
+  lapanganId   String
+  tanggalBooking DateTime?
+  jamMulai     DateTime?
+  jamSelesai   DateTime?
+  totalharga   Int?
+  status       statusBooking? @default(PENDING)
+  createdAt    DateTime?   @default(now())
+  updatedAt    DateTime?
+
+  user         user        @relation(fields: [userId], references: [id])
+  detailLapangan detailLapangan @relation(fields: [lapanganId], references: [id])
+}
+
+enum statusBooking{
+  PENDING
+  CONFIRMED
+  COMPLETED
 }
 
 enum user_gender {

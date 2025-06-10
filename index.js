@@ -5,6 +5,7 @@ import authRoute from "./src/routes/Authroute.js";
 import profileRoute from "./src/routes/profileRoute.js";
 import lapanganRoute from "./src/routes/lapanganRoute.js";
 import roleRoute from "./src/routes/roleRoute.js";
+import bookingRoute from "./src/routes/bookingRoute.js";
 
 dotenv.config();
 const app = express();
@@ -21,6 +22,7 @@ app.use("/auth", authRoute);
 app.use("/user", profileRoute);
 app.use("/lapangan", lapanganRoute);
 app.use("/role", roleRoute);
+app.use("/book", bookingRoute);
 
 // cek jika route tidak ditemukan
 app.use((req, res) => {
