@@ -124,9 +124,45 @@ const updateDetailLapangan = async (req, res) => {
   }
 };
 
+const deleteLapangan = async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    // Cek apakah lapangan ada dulu
+    const lapangan = await prisma.detailLapangan.findUnique({
+      where: { id },
+    });
+
+    if (!lapangan) {
+      return res.status(404).json({
+        status: "error",
+        message: "Lapangan tidak ditemukan",
+      });
+    }
+
+    // Hapus lapangan
+    await prisma.detailLapangan.delete({
+      where: { id },
+    });
+
+    res.status(200).json({
+      status: "success",
+      message: "Berhasil menghapus lapangan",
+    });
+  } catch (error) {
+    res.status(500).json({
+      status: "error",
+      message: "Gagal menghapus lapangan",
+      data: error,
+    });
+  }
+};
+
+
 export default {
   getAllLapangan,
   getByIdLapangan,
   inputDetailLapangan,
   updateDetailLapangan,
+  deleteLapangan,
 };

@@ -19,5 +19,8 @@ Router.put(
   MidPengelola,
   lapanganController.updateDetailLapangan
 );
+Router.delete( "/:id",
+  verifyToken,
+  MidPengelola, lapanganController.deleteLapangan);
 
 export default Router;

@@ -43,7 +43,7 @@ model booking {
 }
 
 model detailLapangan {
-  id           String    @id
+  id String @id @default(uuid())
   nama         String
   alamat       String
   harga        Int
