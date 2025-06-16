@@ -128,11 +128,25 @@ exports.Prisma.UserScalarFieldEnum = {
   gender: 'gender',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
-  role: 'role',
-  nomor: 'nomor'
+  nomor: 'nomor',
+  role: 'role'
 };
 
-exports.Prisma.DetaillapanganScalarFieldEnum = {
+exports.Prisma.BookingScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  lapanganId: 'lapanganId',
+  tanggalBooking: 'tanggalBooking',
+  totalharga: 'totalharga',
+  status: 'status',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  tersedia: 'tersedia',
+  isLookingForPartner: 'isLookingForPartner',
+  slotWaktuId: 'slotWaktuId'
+};
+
+exports.Prisma.DetailLapanganScalarFieldEnum = {
   id: 'id',
   nama: 'nama',
   alamat: 'alamat',
@@ -141,6 +155,14 @@ exports.Prisma.DetaillapanganScalarFieldEnum = {
   linkGambar: 'linkGambar',
   noTelp: 'noTelp',
   deskripsi: 'deskripsi',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.SlotwaktuScalarFieldEnum = {
+  id: 'id',
+  jamMulai: 'jamMulai',
+  jamSelesai: 'jamSelesai',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
@@ -163,7 +185,14 @@ exports.Prisma.userOrderByRelevanceFieldEnum = {
   nomor: 'nomor'
 };
 
-exports.Prisma.detaillapanganOrderByRelevanceFieldEnum = {
+exports.Prisma.bookingOrderByRelevanceFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  lapanganId: 'lapanganId',
+  slotWaktuId: 'slotWaktuId'
+};
+
+exports.Prisma.detailLapanganOrderByRelevanceFieldEnum = {
   id: 'id',
   nama: 'nama',
   alamat: 'alamat',
@@ -171,6 +200,10 @@ exports.Prisma.detaillapanganOrderByRelevanceFieldEnum = {
   linkGambar: 'linkGambar',
   noTelp: 'noTelp',
   deskripsi: 'deskripsi'
+};
+
+exports.Prisma.slotwaktuOrderByRelevanceFieldEnum = {
+  id: 'id'
 };
 exports.user_gender = exports.$Enums.user_gender = {
   Pria: 'Pria',
@@ -182,9 +215,18 @@ exports.user_role = exports.$Enums.user_role = {
   User: 'User'
 };
 
+exports.statusBooking = exports.$Enums.statusBooking = {
+  PENDING: 'PENDING',
+  CONFIRMED: 'CONFIRMED',
+  CANCELED: 'CANCELED',
+  COMPLETED: 'COMPLETED'
+};
+
 exports.Prisma.ModelName = {
   user: 'user',
-  detaillapangan: 'detaillapangan'
+  booking: 'booking',
+  detailLapangan: 'detailLapangan',
+  slotwaktu: 'slotwaktu'
 };
 
 /**

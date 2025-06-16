@@ -42,7 +42,7 @@ export const register = async (req, res) => {
         email: email,
         password: hashedPassword,
         nomor: nomor,
-        role: role || "User", //default role jika tidak ada yang diberikan
+        role: role || "User", // Default role is 'user' if not provided
       },
     });
 
@@ -93,7 +93,7 @@ export const login = async (req, res) => {
     // Penambahan token
     // Menggunakan JWT untuk membuat token akses
     const payload = {
-      userId: user.id,
+      id: user.id,
       email: user.email,
       username: user.username,
       role: user.role,

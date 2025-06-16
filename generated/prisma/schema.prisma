@@ -16,12 +16,34 @@ model user {
   gender    user_gender?
   createdAt DateTime     @default(now())
   updatedAt DateTime?
-  role      user_role?
   nomor     String?
+  role      user_role?
+  bookings  booking[]
 }
 
-model detaillapangan {
-  id           Int      @id @default(autoincrement())
+model booking {
+  id                  String         @id @default(uuid())
+  userId              String
+  lapanganId          String
+  tanggalBooking      DateTime?      @db.Date
+  totalharga          Int?
+  status              statusBooking? @default(PENDING)
+  createdAt           DateTime?      @default(now())
+  updatedAt           DateTime?
+  tersedia            Boolean        @default(true)
+  isLookingForPartner Boolean        @default(false)
+  slotWaktuId         String
+  detailLapangan      detailLapangan @relation(fields: [lapanganId], references: [id])
+  slotWaktu           slotwaktu      @relation(fields: [slotWaktuId], references: [id])
+  user                user           @relation(fields: [userId], references: [id])
+
+  @@index([lapanganId], map: "booking_lapanganId_fkey")
+  @@index([slotWaktuId], map: "booking_slotWaktuId_fkey")
+  @@index([userId], map: "booking_userId_fkey")
+}
+
+model detailLapangan {
+  id           String    @id
   nama         String
   alamat       String
   harga        Int
@@ -29,8 +51,25 @@ model detaillapangan {
   linkGambar   String
   noTelp       String
   deskripsi    String
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime?
+  bookings     booking[]
+}
+
+model slotwaktu {
+  id         String    @id
+  jamMulai   DateTime? @db.Time(3)
+  jamSelesai DateTime? @db.Time(3)
+  createdAt  DateTime? @default(now())
+  updatedAt  DateTime?
+  bookings   booking[]
+}
+
+enum statusBooking {
+  PENDING
+  CONFIRMED
+  CANCELED
+  COMPLETED
 }
 
 enum user_gender {
