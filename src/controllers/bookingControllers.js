@@ -6,6 +6,7 @@ const getAllBooking = async (req, res) => {
       include: {
         user: true,
         detailLapangan: true,
+        slotWaktu: true,
       },
     });
 
@@ -27,10 +28,9 @@ const getAllBooking = async (req, res) => {
 const createBooking = async (req, res) => {
   const {
     lapanganId,
+    slotWaktuId,
     tanggalBooking,
     tersedia,
-    jamMulai,
-    jamSelesai,
     totalharga,
   } = req.body;
 
@@ -40,8 +40,6 @@ const createBooking = async (req, res) => {
     if (
       !lapanganId ||
       !tanggalBooking ||
-      !jamMulai ||
-      !jamSelesai ||
       !tersedia ||
       !totalharga
     ) {
@@ -52,32 +50,13 @@ const createBooking = async (req, res) => {
     }
 
     const tanggal = new Date(tanggalBooking);
-    const mulai = new Date(jamMulai);
-    const selesai = new Date(jamSelesai);
 
     // Cek konflik
     const conflict = await prisma.booking.findFirst({
       where: {
         lapanganId,
+        slotWaktuId,
         tanggalBooking: tanggal,
-        OR: [
-          {
-            jamMulai: {
-              lte: mulai,
-            },
-            jamSelesai: {
-              gt: mulai,
-            },
-          },
-          {
-            jamMulai: {
-              lt: selesai,
-            },
-            jamSelesai: {
-              gte: selesai,
-            },
-          },
-        ],
         status: {
           not: "CANCELED",
         },
@@ -96,9 +75,8 @@ const createBooking = async (req, res) => {
       data: {
         userId,
         lapanganId,
+        slotWaktuId,
         tanggalBooking: tanggal,
-        jamMulai: mulai,
-        jamSelesai: selesai,
         tersedia,
         totalharga,
         status: "PENDING",
@@ -136,6 +114,7 @@ const getBookingByUser = async (req, res) => {
       where: { userId },
       include: {
         detailLapangan: true,
+        slotWaktu: true,
       },
       orderBy: {
         tanggalBooking: "desc",
@@ -161,7 +140,7 @@ const updateBookingStatus = async (req, res) => {
   const { id } = req.params;
   const { status } = req.body;
 
-  const allowedStatus = ["PENDING", "CONFIRMED", "COMPLETED"];
+  const allowedStatus = ["PENDING", "CONFIRMED", "COMPLETED", "CANCELED"];
 
   if (!allowedStatus.includes(status)) {
     return res.status(400).json({
@@ -204,6 +183,7 @@ const getBookingByIdBooking = async (req, res) => {
       include: {
         user: true,
         detailLapangan: true,
+        slotWaktu: true,
       },
     });
 
@@ -300,28 +280,27 @@ const deleteBookingByIdBooking = async (req, res) => {
 };
 
 const getBookByDate = async (req, res) => {
-
   const { tanggal } = req.params;
-
   try {
-    await prisma.booking.findMany({
-      where : {
-        tanggalBooking: new Date(tanggal),
-      }
-    }).then((data) => {
-      return res.status(200).json({
-        status: "success",
-        message: "Berhasil mendapatkan booking",
-        data,
-      });
-    }).catch((error) => {
-      return res.status(500).json({
-        status: "error",
-        message: "Gagal mendapatkan booking",
-        error,
-      });
-    }); 
+    const start = new Date(tanggal);
+    start.setHours(0, 0, 0, 0);
+    const end = new Date(start);
+    end.setDate(end.getDate() + 1);
 
+    const data = await prisma.booking.findMany({
+      where: {
+        tanggalBooking: {
+          gte: start,
+          lt: end,
+        },
+      },
+    });
+
+    return res.status(200).json({
+      status: "success",
+      message: "Berhasil mendapatkan booking",
+      data,
+    });
   } catch (error) {
     return res.status(500).json({
       status: "error",

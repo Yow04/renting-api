@@ -128,11 +128,25 @@ exports.Prisma.UserScalarFieldEnum = {
   gender: 'gender',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
-  role: 'role',
-  nomor: 'nomor'
+  nomor: 'nomor',
+  role: 'role'
 };
 
-exports.Prisma.DetailLapanganScalarFieldEnum = {
+exports.Prisma.BookingScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  lapanganId: 'lapanganId',
+  tanggalBooking: 'tanggalBooking',
+  totalharga: 'totalharga',
+  status: 'status',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  tersedia: 'tersedia',
+  isLookingForPartner: 'isLookingForPartner',
+  slotWaktuId: 'slotWaktuId'
+};
+
+exports.Prisma.DetaillapanganScalarFieldEnum = {
   id: 'id',
   nama: 'nama',
   alamat: 'alamat',
@@ -145,17 +159,10 @@ exports.Prisma.DetailLapanganScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
-exports.Prisma.BookingScalarFieldEnum = {
+exports.Prisma.SlotwaktuScalarFieldEnum = {
   id: 'id',
-  userId: 'userId',
-  lapanganId: 'lapanganId',
-  tanggalBooking: 'tanggalBooking',
   jamMulai: 'jamMulai',
   jamSelesai: 'jamSelesai',
-  totalharga: 'totalharga',
-  tersedia: 'tersedia',
-  status: 'status',
-  isLookingForPartner: 'isLookingForPartner',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
@@ -178,7 +185,14 @@ exports.Prisma.userOrderByRelevanceFieldEnum = {
   nomor: 'nomor'
 };
 
-exports.Prisma.detailLapanganOrderByRelevanceFieldEnum = {
+exports.Prisma.bookingOrderByRelevanceFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  lapanganId: 'lapanganId',
+  slotWaktuId: 'slotWaktuId'
+};
+
+exports.Prisma.detaillapanganOrderByRelevanceFieldEnum = {
   id: 'id',
   nama: 'nama',
   alamat: 'alamat',
@@ -188,10 +202,8 @@ exports.Prisma.detailLapanganOrderByRelevanceFieldEnum = {
   deskripsi: 'deskripsi'
 };
 
-exports.Prisma.bookingOrderByRelevanceFieldEnum = {
-  id: 'id',
-  userId: 'userId',
-  lapanganId: 'lapanganId'
+exports.Prisma.slotwaktuOrderByRelevanceFieldEnum = {
+  id: 'id'
 };
 exports.user_gender = exports.$Enums.user_gender = {
   Pria: 'Pria',
@@ -212,8 +224,9 @@ exports.statusBooking = exports.$Enums.statusBooking = {
 
 exports.Prisma.ModelName = {
   user: 'user',
-  detailLapangan: 'detailLapangan',
-  booking: 'booking'
+  booking: 'booking',
+  detaillapangan: 'detaillapangan',
+  slotwaktu: 'slotwaktu'
 };
 
 /**
