@@ -284,8 +284,8 @@ export namespace Prisma {
   export import Exact = $Public.Exact
 
   /**
-   * Prisma Client JS version: 6.8.2
-   * Query Engine version: 2060c79ba17c6bb9f5823312b6f6b7f4a845738e
+   * Prisma Client JS version: 6.9.0
+   * Query Engine version: 81e4af48011447c3cc503a190e86995b66d2a28e
    */
   export type PrismaVersion = {
     client: string
@@ -3204,6 +3204,7 @@ export namespace Prisma {
     totalharga: number | null
     tersedia: boolean | null
     status: $Enums.statusBooking | null
+    isLookingForPartner: boolean | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -3218,6 +3219,7 @@ export namespace Prisma {
     totalharga: number | null
     tersedia: boolean | null
     status: $Enums.statusBooking | null
+    isLookingForPartner: boolean | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -3232,6 +3234,7 @@ export namespace Prisma {
     totalharga: number
     tersedia: number
     status: number
+    isLookingForPartner: number
     createdAt: number
     updatedAt: number
     _all: number
@@ -3256,6 +3259,7 @@ export namespace Prisma {
     totalharga?: true
     tersedia?: true
     status?: true
+    isLookingForPartner?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -3270,6 +3274,7 @@ export namespace Prisma {
     totalharga?: true
     tersedia?: true
     status?: true
+    isLookingForPartner?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -3284,6 +3289,7 @@ export namespace Prisma {
     totalharga?: true
     tersedia?: true
     status?: true
+    isLookingForPartner?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
@@ -3385,6 +3391,7 @@ export namespace Prisma {
     totalharga: number | null
     tersedia: boolean
     status: $Enums.statusBooking | null
+    isLookingForPartner: boolean
     createdAt: Date | null
     updatedAt: Date | null
     _count: BookingCountAggregateOutputType | null
@@ -3418,6 +3425,7 @@ export namespace Prisma {
     totalharga?: boolean
     tersedia?: boolean
     status?: boolean
+    isLookingForPartner?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     user?: boolean | userDefaultArgs<ExtArgs>
@@ -3436,11 +3444,12 @@ export namespace Prisma {
     totalharga?: boolean
     tersedia?: boolean
     status?: boolean
+    isLookingForPartner?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type bookingOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "lapanganId" | "tanggalBooking" | "jamMulai" | "jamSelesai" | "totalharga" | "tersedia" | "status" | "createdAt" | "updatedAt", ExtArgs["result"]["booking"]>
+  export type bookingOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "lapanganId" | "tanggalBooking" | "jamMulai" | "jamSelesai" | "totalharga" | "tersedia" | "status" | "isLookingForPartner" | "createdAt" | "updatedAt", ExtArgs["result"]["booking"]>
   export type bookingInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | userDefaultArgs<ExtArgs>
     detailLapangan?: boolean | detailLapanganDefaultArgs<ExtArgs>
@@ -3462,6 +3471,7 @@ export namespace Prisma {
       totalharga: number | null
       tersedia: boolean
       status: $Enums.statusBooking | null
+      isLookingForPartner: boolean
       createdAt: Date | null
       updatedAt: Date | null
     }, ExtArgs["result"]["booking"]>
@@ -3844,6 +3854,7 @@ export namespace Prisma {
     readonly totalharga: FieldRef<"booking", 'Int'>
     readonly tersedia: FieldRef<"booking", 'Boolean'>
     readonly status: FieldRef<"booking", 'statusBooking'>
+    readonly isLookingForPartner: FieldRef<"booking", 'Boolean'>
     readonly createdAt: FieldRef<"booking", 'DateTime'>
     readonly updatedAt: FieldRef<"booking", 'DateTime'>
   }
@@ -4262,6 +4273,7 @@ export namespace Prisma {
     totalharga: 'totalharga',
     tersedia: 'tersedia',
     status: 'status',
+    isLookingForPartner: 'isLookingForPartner',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
@@ -4554,6 +4566,7 @@ export namespace Prisma {
     totalharga?: IntNullableFilter<"booking"> | number | null
     tersedia?: BoolFilter<"booking"> | boolean
     status?: EnumstatusBookingNullableFilter<"booking"> | $Enums.statusBooking | null
+    isLookingForPartner?: BoolFilter<"booking"> | boolean
     createdAt?: DateTimeNullableFilter<"booking"> | Date | string | null
     updatedAt?: DateTimeNullableFilter<"booking"> | Date | string | null
     user?: XOR<UserScalarRelationFilter, userWhereInput>
@@ -4570,6 +4583,7 @@ export namespace Prisma {
     totalharga?: SortOrderInput | SortOrder
     tersedia?: SortOrder
     status?: SortOrderInput | SortOrder
+    isLookingForPartner?: SortOrder
     createdAt?: SortOrderInput | SortOrder
     updatedAt?: SortOrderInput | SortOrder
     user?: userOrderByWithRelationInput
@@ -4590,6 +4604,7 @@ export namespace Prisma {
     totalharga?: IntNullableFilter<"booking"> | number | null
     tersedia?: BoolFilter<"booking"> | boolean
     status?: EnumstatusBookingNullableFilter<"booking"> | $Enums.statusBooking | null
+    isLookingForPartner?: BoolFilter<"booking"> | boolean
     createdAt?: DateTimeNullableFilter<"booking"> | Date | string | null
     updatedAt?: DateTimeNullableFilter<"booking"> | Date | string | null
     user?: XOR<UserScalarRelationFilter, userWhereInput>
@@ -4606,6 +4621,7 @@ export namespace Prisma {
     totalharga?: SortOrderInput | SortOrder
     tersedia?: SortOrder
     status?: SortOrderInput | SortOrder
+    isLookingForPartner?: SortOrder
     createdAt?: SortOrderInput | SortOrder
     updatedAt?: SortOrderInput | SortOrder
     _count?: bookingCountOrderByAggregateInput
@@ -4628,6 +4644,7 @@ export namespace Prisma {
     totalharga?: IntNullableWithAggregatesFilter<"booking"> | number | null
     tersedia?: BoolWithAggregatesFilter<"booking"> | boolean
     status?: EnumstatusBookingNullableWithAggregatesFilter<"booking"> | $Enums.statusBooking | null
+    isLookingForPartner?: BoolWithAggregatesFilter<"booking"> | boolean
     createdAt?: DateTimeNullableWithAggregatesFilter<"booking"> | Date | string | null
     updatedAt?: DateTimeNullableWithAggregatesFilter<"booking"> | Date | string | null
   }
@@ -4823,6 +4840,7 @@ export namespace Prisma {
     totalharga?: number | null
     tersedia?: boolean
     status?: $Enums.statusBooking | null
+    isLookingForPartner?: boolean
     createdAt?: Date | string | null
     updatedAt?: Date | string | null
     user: userCreateNestedOneWithoutBookingsInput
@@ -4839,6 +4857,7 @@ export namespace Prisma {
     totalharga?: number | null
     tersedia?: boolean
     status?: $Enums.statusBooking | null
+    isLookingForPartner?: boolean
     createdAt?: Date | string | null
     updatedAt?: Date | string | null
   }
@@ -4851,6 +4870,7 @@ export namespace Prisma {
     totalharga?: NullableIntFieldUpdateOperationsInput | number | null
     tersedia?: BoolFieldUpdateOperationsInput | boolean
     status?: NullableEnumstatusBookingFieldUpdateOperationsInput | $Enums.statusBooking | null
+    isLookingForPartner?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     user?: userUpdateOneRequiredWithoutBookingsNestedInput
@@ -4867,6 +4887,7 @@ export namespace Prisma {
     totalharga?: NullableIntFieldUpdateOperationsInput | number | null
     tersedia?: BoolFieldUpdateOperationsInput | boolean
     status?: NullableEnumstatusBookingFieldUpdateOperationsInput | $Enums.statusBooking | null
+    isLookingForPartner?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
@@ -4881,6 +4902,7 @@ export namespace Prisma {
     totalharga?: number | null
     tersedia?: boolean
     status?: $Enums.statusBooking | null
+    isLookingForPartner?: boolean
     createdAt?: Date | string | null
     updatedAt?: Date | string | null
   }
@@ -4893,6 +4915,7 @@ export namespace Prisma {
     totalharga?: NullableIntFieldUpdateOperationsInput | number | null
     tersedia?: BoolFieldUpdateOperationsInput | boolean
     status?: NullableEnumstatusBookingFieldUpdateOperationsInput | $Enums.statusBooking | null
+    isLookingForPartner?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
@@ -4907,6 +4930,7 @@ export namespace Prisma {
     totalharga?: NullableIntFieldUpdateOperationsInput | number | null
     tersedia?: BoolFieldUpdateOperationsInput | boolean
     status?: NullableEnumstatusBookingFieldUpdateOperationsInput | $Enums.statusBooking | null
+    isLookingForPartner?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
@@ -5247,6 +5271,7 @@ export namespace Prisma {
     totalharga?: SortOrder
     tersedia?: SortOrder
     status?: SortOrder
+    isLookingForPartner?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -5265,6 +5290,7 @@ export namespace Prisma {
     totalharga?: SortOrder
     tersedia?: SortOrder
     status?: SortOrder
+    isLookingForPartner?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -5279,6 +5305,7 @@ export namespace Prisma {
     totalharga?: SortOrder
     tersedia?: SortOrder
     status?: SortOrder
+    isLookingForPartner?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -5745,6 +5772,7 @@ export namespace Prisma {
     totalharga?: number | null
     tersedia?: boolean
     status?: $Enums.statusBooking | null
+    isLookingForPartner?: boolean
     createdAt?: Date | string | null
     updatedAt?: Date | string | null
     detailLapangan: detailLapanganCreateNestedOneWithoutBookingsInput
@@ -5759,6 +5787,7 @@ export namespace Prisma {
     totalharga?: number | null
     tersedia?: boolean
     status?: $Enums.statusBooking | null
+    isLookingForPartner?: boolean
     createdAt?: Date | string | null
     updatedAt?: Date | string | null
   }
@@ -5802,6 +5831,7 @@ export namespace Prisma {
     totalharga?: IntNullableFilter<"booking"> | number | null
     tersedia?: BoolFilter<"booking"> | boolean
     status?: EnumstatusBookingNullableFilter<"booking"> | $Enums.statusBooking | null
+    isLookingForPartner?: BoolFilter<"booking"> | boolean
     createdAt?: DateTimeNullableFilter<"booking"> | Date | string | null
     updatedAt?: DateTimeNullableFilter<"booking"> | Date | string | null
   }
@@ -5814,6 +5844,7 @@ export namespace Prisma {
     totalharga?: number | null
     tersedia?: boolean
     status?: $Enums.statusBooking | null
+    isLookingForPartner?: boolean
     createdAt?: Date | string | null
     updatedAt?: Date | string | null
     user: userCreateNestedOneWithoutBookingsInput
@@ -5828,6 +5859,7 @@ export namespace Prisma {
     totalharga?: number | null
     tersedia?: boolean
     status?: $Enums.statusBooking | null
+    isLookingForPartner?: boolean
     createdAt?: Date | string | null
     updatedAt?: Date | string | null
   }
@@ -5999,6 +6031,7 @@ export namespace Prisma {
     totalharga?: number | null
     tersedia?: boolean
     status?: $Enums.statusBooking | null
+    isLookingForPartner?: boolean
     createdAt?: Date | string | null
     updatedAt?: Date | string | null
   }
@@ -6011,6 +6044,7 @@ export namespace Prisma {
     totalharga?: NullableIntFieldUpdateOperationsInput | number | null
     tersedia?: BoolFieldUpdateOperationsInput | boolean
     status?: NullableEnumstatusBookingFieldUpdateOperationsInput | $Enums.statusBooking | null
+    isLookingForPartner?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     detailLapangan?: detailLapanganUpdateOneRequiredWithoutBookingsNestedInput
@@ -6025,6 +6059,7 @@ export namespace Prisma {
     totalharga?: NullableIntFieldUpdateOperationsInput | number | null
     tersedia?: BoolFieldUpdateOperationsInput | boolean
     status?: NullableEnumstatusBookingFieldUpdateOperationsInput | $Enums.statusBooking | null
+    isLookingForPartner?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
@@ -6038,6 +6073,7 @@ export namespace Prisma {
     totalharga?: NullableIntFieldUpdateOperationsInput | number | null
     tersedia?: BoolFieldUpdateOperationsInput | boolean
     status?: NullableEnumstatusBookingFieldUpdateOperationsInput | $Enums.statusBooking | null
+    isLookingForPartner?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
@@ -6051,6 +6087,7 @@ export namespace Prisma {
     totalharga?: number | null
     tersedia?: boolean
     status?: $Enums.statusBooking | null
+    isLookingForPartner?: boolean
     createdAt?: Date | string | null
     updatedAt?: Date | string | null
   }
@@ -6063,6 +6100,7 @@ export namespace Prisma {
     totalharga?: NullableIntFieldUpdateOperationsInput | number | null
     tersedia?: BoolFieldUpdateOperationsInput | boolean
     status?: NullableEnumstatusBookingFieldUpdateOperationsInput | $Enums.statusBooking | null
+    isLookingForPartner?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     user?: userUpdateOneRequiredWithoutBookingsNestedInput
@@ -6077,6 +6115,7 @@ export namespace Prisma {
     totalharga?: NullableIntFieldUpdateOperationsInput | number | null
     tersedia?: BoolFieldUpdateOperationsInput | boolean
     status?: NullableEnumstatusBookingFieldUpdateOperationsInput | $Enums.statusBooking | null
+    isLookingForPartner?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
@@ -6090,6 +6129,7 @@ export namespace Prisma {
     totalharga?: NullableIntFieldUpdateOperationsInput | number | null
     tersedia?: BoolFieldUpdateOperationsInput | boolean
     status?: NullableEnumstatusBookingFieldUpdateOperationsInput | $Enums.statusBooking | null
+    isLookingForPartner?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
