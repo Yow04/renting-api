@@ -146,7 +146,7 @@ exports.Prisma.BookingScalarFieldEnum = {
   slotWaktuId: 'slotWaktuId'
 };
 
-exports.Prisma.DetaillapanganScalarFieldEnum = {
+exports.Prisma.DetailLapanganScalarFieldEnum = {
   id: 'id',
   nama: 'nama',
   alamat: 'alamat',
@@ -192,7 +192,7 @@ exports.Prisma.bookingOrderByRelevanceFieldEnum = {
   slotWaktuId: 'slotWaktuId'
 };
 
-exports.Prisma.detaillapanganOrderByRelevanceFieldEnum = {
+exports.Prisma.detailLapanganOrderByRelevanceFieldEnum = {
   id: 'id',
   nama: 'nama',
   alamat: 'alamat',
@@ -225,7 +225,7 @@ exports.statusBooking = exports.$Enums.statusBooking = {
 exports.Prisma.ModelName = {
   user: 'user',
   booking: 'booking',
-  detaillapangan: 'detaillapangan',
+  detailLapangan: 'detailLapangan',
   slotwaktu: 'slotwaktu'
 };
 

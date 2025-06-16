@@ -33,7 +33,7 @@ model booking {
   tersedia            Boolean        @default(true)
   isLookingForPartner Boolean        @default(false)
   slotWaktuId         String
-  detailLapangan      detaillapangan @relation(fields: [lapanganId], references: [id])
+  detailLapangan      detailLapangan @relation(fields: [lapanganId], references: [id])
   slotWaktu           slotwaktu      @relation(fields: [slotWaktuId], references: [id])
   user                user           @relation(fields: [userId], references: [id])
 
@@ -42,7 +42,7 @@ model booking {
   @@index([userId], map: "booking_userId_fkey")
 }
 
-model detaillapangan {
+model detailLapangan {
   id           String    @id
   nama         String
   alamat       String
