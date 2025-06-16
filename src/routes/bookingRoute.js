@@ -39,4 +39,9 @@ Router.delete(
   bookingControllers.deleteBookingByIdBooking
 );
 
+Router.get(
+  "/now/:tanggal",
+  verifyToken,
+  bookingControllers.getBookByDate
+);
 export default Router;

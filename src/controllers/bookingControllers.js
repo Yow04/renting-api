@@ -175,6 +175,7 @@ const updateBookingStatus = async (req, res) => {
       where: { id },
       data: {
         status,
+        tersedia: status === "CONFIRMED" ? false : status === "CANCELED" ? true : undefined,
         updatedAt: new Date(), // isi updatedAt
       },
     });
@@ -298,6 +299,37 @@ const deleteBookingByIdBooking = async (req, res) => {
   }
 };
 
+const getBookByDate = async (req, res) => {
+
+  const { tanggal } = req.params;
+
+  try {
+    await prisma.booking.findMany({
+      where : {
+        tanggalBooking: new Date(tanggal),
+      }
+    }).then((data) => {
+      return res.status(200).json({
+        status: "success",
+        message: "Berhasil mendapatkan booking",
+        data,
+      });
+    }).catch((error) => {
+      return res.status(500).json({
+        status: "error",
+        message: "Gagal mendapatkan booking",
+        error,
+      });
+    }); 
+
+  } catch (error) {
+    return res.status(500).json({
+      status: "error",
+      message: "Gagal mendapatkan booking",
+      error,
+    });
+  }
+};
 export default {
   getAllBooking,
   createBooking,
@@ -306,4 +338,5 @@ export default {
   getBookingByIdBooking,
   deleteBookingByIdBooking,
   getBookingForCommunity,
+  getBookByDate
 };
