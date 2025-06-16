@@ -35,27 +35,27 @@ model detailLapangan {
   updatedAt    DateTime?
 
   bookings booking[]
-
 }
 
 model booking {
-  id           String     @id @default(uuid())
-  userId       String     
-  lapanganId   String
-  tanggalBooking DateTime?
-  jamMulai     DateTime?
-  jamSelesai   DateTime?
-  totalharga   Int?
-  tersedia     Boolean         @default(true)
-  status       statusBooking? @default(PENDING)
-  createdAt    DateTime?   @default(now())
-  updatedAt    DateTime?
+  id                  String         @id @default(uuid())
+  userId              String
+  lapanganId          String
+  tanggalBooking      DateTime?
+  jamMulai            DateTime?
+  jamSelesai          DateTime?
+  totalharga          Int?
+  tersedia            Boolean        @default(true)
+  status              statusBooking? @default(PENDING)
+  isLookingForPartner Boolean        @default(false)
+  createdAt           DateTime?      @default(now())
+  updatedAt           DateTime?
 
-  user         user        @relation(fields: [userId], references: [id])
+  user           user           @relation(fields: [userId], references: [id])
   detailLapangan detailLapangan @relation(fields: [lapanganId], references: [id])
 }
 
-enum statusBooking{
+enum statusBooking {
   PENDING
   CONFIRMED
   CANCELED

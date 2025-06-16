@@ -37,7 +37,14 @@ const createBooking = async (req, res) => {
   const userId = req.user.id; // dari JWT
 
   try {
-    if (!lapanganId || !tanggalBooking || !jamMulai || !jamSelesai || !tersedia || !totalharga) {
+    if (
+      !lapanganId ||
+      !tanggalBooking ||
+      !jamMulai ||
+      !jamSelesai ||
+      !tersedia ||
+      !totalharga
+    ) {
       return res.status(400).json({
         status: "error",
         message: "Semua field booking harus diisi",
@@ -72,7 +79,7 @@ const createBooking = async (req, res) => {
           },
         ],
         status: {
-          not: "CANCELED", 
+          not: "CANCELED",
         },
       },
     });
@@ -228,6 +235,28 @@ const getBookingByIdBooking = async (req, res) => {
   }
 };
 
+const getBookingForCommunity = async (req, res) => {
+  try {
+    const hasil = await prisma.booking.findMany({
+      where: {
+        isLookingForPartner: true,
+      },
+    });
+
+    res.status(200).json({
+      status: "success",
+      message: "Berhasil mendapatkan booking list untuk komunitas",
+      data: hasil,
+    });
+  } catch (error) {
+    console.error("Error :", error);
+    return res.status(500).json({
+      status: "error",
+      message: "Gagal mendapatkan data booking untuk komunitas",
+    });
+  }
+};
+
 // Delete booking by ID (hanya admin)
 const deleteBookingByIdBooking = async (req, res) => {
   const { id } = req.params;
@@ -276,4 +305,5 @@ export default {
   updateBookingStatus,
   getBookingByIdBooking,
   deleteBookingByIdBooking,
+  getBookingForCommunity,
 };
