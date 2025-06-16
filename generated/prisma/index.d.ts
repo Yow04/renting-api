@@ -5967,7 +5967,7 @@ export namespace Prisma {
   }
 
   export type detailLapanganCreateInput = {
-    id: string
+    id?: string
     nama: string
     alamat: string
     harga: number
@@ -5981,7 +5981,7 @@ export namespace Prisma {
   }
 
   export type detailLapanganUncheckedCreateInput = {
-    id: string
+    id?: string
     nama: string
     alamat: string
     harga: number
@@ -6023,7 +6023,7 @@ export namespace Prisma {
   }
 
   export type detailLapanganCreateManyInput = {
-    id: string
+    id?: string
     nama: string
     alamat: string
     harga: number
@@ -7108,7 +7108,7 @@ export namespace Prisma {
   }
 
   export type detailLapanganCreateWithoutBookingsInput = {
-    id: string
+    id?: string
     nama: string
     alamat: string
     harga: number
@@ -7121,7 +7121,7 @@ export namespace Prisma {
   }
 
   export type detailLapanganUncheckedCreateWithoutBookingsInput = {
-    id: string
+    id?: string
     nama: string
     alamat: string
     harga: number

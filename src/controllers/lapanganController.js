@@ -2,7 +2,7 @@ import prisma from "../../prisma/prisma.js";
 
 const getAllLapangan = async (req, res) => {
   try {
-    const lapangan = await prisma.detaillapangan.findMany();
+    const lapangan = await prisma.detailLapangan.findMany();
     res.status(200).json({
       status: "success",
       message: "Berhasil mendapatkan semua lapangan",
@@ -64,7 +64,7 @@ const inputDetailLapangan = async (req, res) => {
       });
     }
 
-    const newLapangan = await prisma.detaillapangan.create({
+    const newLapangan = await prisma.detailLapangan.create({
       data: {
         nama,
         alamat,
@@ -129,7 +129,7 @@ const deleteLapangan = async (req, res) => {
 
   try {
     // Cek apakah lapangan ada dulu
-    const lapangan = await prisma.detaillapangan.findUnique({
+    const lapangan = await prisma.detailLapangan.findUnique({
       where: { id },
     });
 
@@ -141,7 +141,7 @@ const deleteLapangan = async (req, res) => {
     }
 
     // Hapus lapangan
-    await prisma.detaillapangan.delete({
+    await prisma.detailLapangan.delete({
       where: { id },
     });
 
