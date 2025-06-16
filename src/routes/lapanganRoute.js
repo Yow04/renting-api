@@ -7,5 +7,6 @@ Router.get("/", lapanganController.getAllLapangan);
 Router.get("/:id", lapanganController.getByIdLapangan);
 Router.post("/", lapanganController.inputDetailLapangan);
 Router.put("/:id", lapanganController.updateDetailLapangan);
+Router.delete('/:id', lapanganController.deleteLapangan);
 
 export default Router;

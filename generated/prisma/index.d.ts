@@ -3243,7 +3243,7 @@ export namespace Prisma {
   }
 
   export type detaillapanganCreateInput = {
-    id: string
+    id?: string
     nama: string
     alamat: string
     harga: number
@@ -3252,11 +3252,11 @@ export namespace Prisma {
     noTelp: string
     deskripsi: string
     createdAt?: Date | string
-    updatedAt: Date | string
+    updatedAt?: Date | string
   }
 
   export type detaillapanganUncheckedCreateInput = {
-    id: string
+    id?: string
     nama: string
     alamat: string
     harga: number
@@ -3265,7 +3265,7 @@ export namespace Prisma {
     noTelp: string
     deskripsi: string
     createdAt?: Date | string
-    updatedAt: Date | string
+    updatedAt?: Date | string
   }
 
   export type detaillapanganUpdateInput = {
@@ -3295,7 +3295,7 @@ export namespace Prisma {
   }
 
   export type detaillapanganCreateManyInput = {
-    id: string
+    id?: string
     nama: string
     alamat: string
     harga: number
@@ -3304,7 +3304,7 @@ export namespace Prisma {
     noTelp: string
     deskripsi: string
     createdAt?: Date | string
-    updatedAt: Date | string
+    updatedAt?: Date | string
   }
 
   export type detaillapanganUpdateManyMutationInput = {

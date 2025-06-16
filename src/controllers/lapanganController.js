@@ -2,7 +2,7 @@ import prisma from "../../prisma/prisma.js";
 
 const getAllLapangan = async (req, res) => {
   try {
-    const lapangan = await prisma.detailLapangan.findMany();
+    const lapangan = await prisma.detaillapangan.findMany();
     res.status(200).json({
       status: "success",
       message: "Berhasil mendapatkan semua lapangan",
@@ -20,8 +20,8 @@ const getAllLapangan = async (req, res) => {
 const getByIdLapangan = async (req, res) => {
   const { id } = req.params;
   try {
-    const lapangan = await prisma.detailLapangan.findUnique({
-      where: { id: parseInt(id) },
+    const lapangan = await prisma.detaillapangan.findUnique({
+      where: { id },
     });
     if (!lapangan) {
       return res.status(404).json({
@@ -64,7 +64,7 @@ const inputDetailLapangan = async (req, res) => {
       });
     }
 
-    const newLapangan = await prisma.detailLapangan.create({
+    const newLapangan = await prisma.detaillapangan.create({
       data: {
         nama,
         alamat,
@@ -91,20 +91,20 @@ const inputDetailLapangan = async (req, res) => {
 };
 
 const updateDetailLapangan = async (req, res) => {
-  if (role !== "admin") {
-    return res.status(403).json({
-      status: "error",
-      message: "Akses ditolak, hanya admin yang dapat menambahkan lapangan",
-    });
-  }
+  // if (role !== "admin") {
+  //   return res.status(403).json({
+  //     status: "error",
+  //     message: "Akses ditolak, hanya admin yang dapat menambahkan lapangan",
+  //   });
+  // }
 
   const { id } = req.params;
   const { nama, alamat, harga, tipeLapangan, linkGambar, noTelp, deskripsi } =
     req.body;
 
   try {
-    const updatedLapangan = await prisma.detailLapangan.update({
-      where: { id: parseInt(id) },
+    const updatedLapangan = await prisma.detaillapangan.update({
+      where: { id },
       data: {
         nama,
         alamat,
@@ -130,9 +130,45 @@ const updateDetailLapangan = async (req, res) => {
   }
 };
 
+const deleteLapangan = async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    // Cek apakah lapangan ada dulu
+    const lapangan = await prisma.detaillapangan.findUnique({
+      where: { id },
+    });
+
+    if (!lapangan) {
+      return res.status(404).json({
+        status: "error",
+        message: "Lapangan tidak ditemukan",
+      });
+    }
+
+    // Hapus lapangan
+    await prisma.detaillapangan.delete({
+      where: { id },
+    });
+
+    res.status(200).json({
+      status: "success",
+      message: "Berhasil menghapus lapangan",
+    });
+  } catch (error) {
+    res.status(500).json({
+      status: "error",
+      message: "Gagal menghapus lapangan",
+      data: error,
+    });
+  }
+};
+
+
 export default {
   getAllLapangan,
   getByIdLapangan,
   inputDetailLapangan,
   updateDetailLapangan,
+  deleteLapangan,
 };
