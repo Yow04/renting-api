@@ -153,6 +153,7 @@ exports.Prisma.BookingScalarFieldEnum = {
   jamMulai: 'jamMulai',
   jamSelesai: 'jamSelesai',
   totalharga: 'totalharga',
+  tersedia: 'tersedia',
   status: 'status',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
@@ -204,6 +205,7 @@ exports.user_role = exports.$Enums.user_role = {
 exports.statusBooking = exports.$Enums.statusBooking = {
   PENDING: 'PENDING',
   CONFIRMED: 'CONFIRMED',
+  CANCELED: 'CANCELED',
   COMPLETED: 'COMPLETED'
 };
 

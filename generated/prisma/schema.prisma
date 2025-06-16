@@ -45,6 +45,7 @@ model booking {
   jamMulai       DateTime?
   jamSelesai     DateTime?
   totalharga     Int?
+  tersedia       Boolean        @default(true)
   status         statusBooking? @default(PENDING)
   createdAt      DateTime?      @default(now())
   updatedAt      DateTime?
@@ -56,6 +57,7 @@ model booking {
 enum statusBooking {
   PENDING
   CONFIRMED
+  CANCELED
   COMPLETED
 }
 

@@ -93,7 +93,7 @@ export const login = async (req, res) => {
     // Penambahan token
     // Menggunakan JWT untuk membuat token akses
     const payload = {
-      userId: user.id,
+      id: user.id,
       email: user.email,
       username: user.username,
       role: user.role,

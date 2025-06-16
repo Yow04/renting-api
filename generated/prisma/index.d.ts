@@ -36,6 +36,7 @@ export namespace $Enums {
   export const statusBooking: {
   PENDING: 'PENDING',
   CONFIRMED: 'CONFIRMED',
+  CANCELED: 'CANCELED',
   COMPLETED: 'COMPLETED'
 };
 
@@ -3201,6 +3202,7 @@ export namespace Prisma {
     jamMulai: Date | null
     jamSelesai: Date | null
     totalharga: number | null
+    tersedia: boolean | null
     status: $Enums.statusBooking | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -3214,6 +3216,7 @@ export namespace Prisma {
     jamMulai: Date | null
     jamSelesai: Date | null
     totalharga: number | null
+    tersedia: boolean | null
     status: $Enums.statusBooking | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -3227,6 +3230,7 @@ export namespace Prisma {
     jamMulai: number
     jamSelesai: number
     totalharga: number
+    tersedia: number
     status: number
     createdAt: number
     updatedAt: number
@@ -3250,6 +3254,7 @@ export namespace Prisma {
     jamMulai?: true
     jamSelesai?: true
     totalharga?: true
+    tersedia?: true
     status?: true
     createdAt?: true
     updatedAt?: true
@@ -3263,6 +3268,7 @@ export namespace Prisma {
     jamMulai?: true
     jamSelesai?: true
     totalharga?: true
+    tersedia?: true
     status?: true
     createdAt?: true
     updatedAt?: true
@@ -3276,6 +3282,7 @@ export namespace Prisma {
     jamMulai?: true
     jamSelesai?: true
     totalharga?: true
+    tersedia?: true
     status?: true
     createdAt?: true
     updatedAt?: true
@@ -3376,6 +3383,7 @@ export namespace Prisma {
     jamMulai: Date | null
     jamSelesai: Date | null
     totalharga: number | null
+    tersedia: boolean
     status: $Enums.statusBooking | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -3408,6 +3416,7 @@ export namespace Prisma {
     jamMulai?: boolean
     jamSelesai?: boolean
     totalharga?: boolean
+    tersedia?: boolean
     status?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -3425,12 +3434,13 @@ export namespace Prisma {
     jamMulai?: boolean
     jamSelesai?: boolean
     totalharga?: boolean
+    tersedia?: boolean
     status?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type bookingOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "lapanganId" | "tanggalBooking" | "jamMulai" | "jamSelesai" | "totalharga" | "status" | "createdAt" | "updatedAt", ExtArgs["result"]["booking"]>
+  export type bookingOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "lapanganId" | "tanggalBooking" | "jamMulai" | "jamSelesai" | "totalharga" | "tersedia" | "status" | "createdAt" | "updatedAt", ExtArgs["result"]["booking"]>
   export type bookingInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | userDefaultArgs<ExtArgs>
     detailLapangan?: boolean | detailLapanganDefaultArgs<ExtArgs>
@@ -3450,6 +3460,7 @@ export namespace Prisma {
       jamMulai: Date | null
       jamSelesai: Date | null
       totalharga: number | null
+      tersedia: boolean
       status: $Enums.statusBooking | null
       createdAt: Date | null
       updatedAt: Date | null
@@ -3831,6 +3842,7 @@ export namespace Prisma {
     readonly jamMulai: FieldRef<"booking", 'DateTime'>
     readonly jamSelesai: FieldRef<"booking", 'DateTime'>
     readonly totalharga: FieldRef<"booking", 'Int'>
+    readonly tersedia: FieldRef<"booking", 'Boolean'>
     readonly status: FieldRef<"booking", 'statusBooking'>
     readonly createdAt: FieldRef<"booking", 'DateTime'>
     readonly updatedAt: FieldRef<"booking", 'DateTime'>
@@ -4248,6 +4260,7 @@ export namespace Prisma {
     jamMulai: 'jamMulai',
     jamSelesai: 'jamSelesai',
     totalharga: 'totalharga',
+    tersedia: 'tersedia',
     status: 'status',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
@@ -4342,6 +4355,13 @@ export namespace Prisma {
    * Reference to a field of type 'Int'
    */
   export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
+    
+
+
+  /**
+   * Reference to a field of type 'Boolean'
+   */
+  export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
     
 
 
@@ -4532,6 +4552,7 @@ export namespace Prisma {
     jamMulai?: DateTimeNullableFilter<"booking"> | Date | string | null
     jamSelesai?: DateTimeNullableFilter<"booking"> | Date | string | null
     totalharga?: IntNullableFilter<"booking"> | number | null
+    tersedia?: BoolFilter<"booking"> | boolean
     status?: EnumstatusBookingNullableFilter<"booking"> | $Enums.statusBooking | null
     createdAt?: DateTimeNullableFilter<"booking"> | Date | string | null
     updatedAt?: DateTimeNullableFilter<"booking"> | Date | string | null
@@ -4547,6 +4568,7 @@ export namespace Prisma {
     jamMulai?: SortOrderInput | SortOrder
     jamSelesai?: SortOrderInput | SortOrder
     totalharga?: SortOrderInput | SortOrder
+    tersedia?: SortOrder
     status?: SortOrderInput | SortOrder
     createdAt?: SortOrderInput | SortOrder
     updatedAt?: SortOrderInput | SortOrder
@@ -4566,6 +4588,7 @@ export namespace Prisma {
     jamMulai?: DateTimeNullableFilter<"booking"> | Date | string | null
     jamSelesai?: DateTimeNullableFilter<"booking"> | Date | string | null
     totalharga?: IntNullableFilter<"booking"> | number | null
+    tersedia?: BoolFilter<"booking"> | boolean
     status?: EnumstatusBookingNullableFilter<"booking"> | $Enums.statusBooking | null
     createdAt?: DateTimeNullableFilter<"booking"> | Date | string | null
     updatedAt?: DateTimeNullableFilter<"booking"> | Date | string | null
@@ -4581,6 +4604,7 @@ export namespace Prisma {
     jamMulai?: SortOrderInput | SortOrder
     jamSelesai?: SortOrderInput | SortOrder
     totalharga?: SortOrderInput | SortOrder
+    tersedia?: SortOrder
     status?: SortOrderInput | SortOrder
     createdAt?: SortOrderInput | SortOrder
     updatedAt?: SortOrderInput | SortOrder
@@ -4602,6 +4626,7 @@ export namespace Prisma {
     jamMulai?: DateTimeNullableWithAggregatesFilter<"booking"> | Date | string | null
     jamSelesai?: DateTimeNullableWithAggregatesFilter<"booking"> | Date | string | null
     totalharga?: IntNullableWithAggregatesFilter<"booking"> | number | null
+    tersedia?: BoolWithAggregatesFilter<"booking"> | boolean
     status?: EnumstatusBookingNullableWithAggregatesFilter<"booking"> | $Enums.statusBooking | null
     createdAt?: DateTimeNullableWithAggregatesFilter<"booking"> | Date | string | null
     updatedAt?: DateTimeNullableWithAggregatesFilter<"booking"> | Date | string | null
@@ -4796,6 +4821,7 @@ export namespace Prisma {
     jamMulai?: Date | string | null
     jamSelesai?: Date | string | null
     totalharga?: number | null
+    tersedia?: boolean
     status?: $Enums.statusBooking | null
     createdAt?: Date | string | null
     updatedAt?: Date | string | null
@@ -4811,6 +4837,7 @@ export namespace Prisma {
     jamMulai?: Date | string | null
     jamSelesai?: Date | string | null
     totalharga?: number | null
+    tersedia?: boolean
     status?: $Enums.statusBooking | null
     createdAt?: Date | string | null
     updatedAt?: Date | string | null
@@ -4822,6 +4849,7 @@ export namespace Prisma {
     jamMulai?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     jamSelesai?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     totalharga?: NullableIntFieldUpdateOperationsInput | number | null
+    tersedia?: BoolFieldUpdateOperationsInput | boolean
     status?: NullableEnumstatusBookingFieldUpdateOperationsInput | $Enums.statusBooking | null
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -4837,6 +4865,7 @@ export namespace Prisma {
     jamMulai?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     jamSelesai?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     totalharga?: NullableIntFieldUpdateOperationsInput | number | null
+    tersedia?: BoolFieldUpdateOperationsInput | boolean
     status?: NullableEnumstatusBookingFieldUpdateOperationsInput | $Enums.statusBooking | null
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -4850,6 +4879,7 @@ export namespace Prisma {
     jamMulai?: Date | string | null
     jamSelesai?: Date | string | null
     totalharga?: number | null
+    tersedia?: boolean
     status?: $Enums.statusBooking | null
     createdAt?: Date | string | null
     updatedAt?: Date | string | null
@@ -4861,6 +4891,7 @@ export namespace Prisma {
     jamMulai?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     jamSelesai?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     totalharga?: NullableIntFieldUpdateOperationsInput | number | null
+    tersedia?: BoolFieldUpdateOperationsInput | boolean
     status?: NullableEnumstatusBookingFieldUpdateOperationsInput | $Enums.statusBooking | null
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -4874,6 +4905,7 @@ export namespace Prisma {
     jamMulai?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     jamSelesai?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     totalharga?: NullableIntFieldUpdateOperationsInput | number | null
+    tersedia?: BoolFieldUpdateOperationsInput | boolean
     status?: NullableEnumstatusBookingFieldUpdateOperationsInput | $Enums.statusBooking | null
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -5177,6 +5209,11 @@ export namespace Prisma {
     not?: NestedIntNullableFilter<$PrismaModel> | number | null
   }
 
+  export type BoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
   export type EnumstatusBookingNullableFilter<$PrismaModel = never> = {
     equals?: $Enums.statusBooking | EnumstatusBookingFieldRefInput<$PrismaModel> | null
     in?: $Enums.statusBooking[] | null
@@ -5208,6 +5245,7 @@ export namespace Prisma {
     jamMulai?: SortOrder
     jamSelesai?: SortOrder
     totalharga?: SortOrder
+    tersedia?: SortOrder
     status?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -5225,6 +5263,7 @@ export namespace Prisma {
     jamMulai?: SortOrder
     jamSelesai?: SortOrder
     totalharga?: SortOrder
+    tersedia?: SortOrder
     status?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -5238,6 +5277,7 @@ export namespace Prisma {
     jamMulai?: SortOrder
     jamSelesai?: SortOrder
     totalharga?: SortOrder
+    tersedia?: SortOrder
     status?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -5261,6 +5301,14 @@ export namespace Prisma {
     _sum?: NestedIntNullableFilter<$PrismaModel>
     _min?: NestedIntNullableFilter<$PrismaModel>
     _max?: NestedIntNullableFilter<$PrismaModel>
+  }
+
+  export type BoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
   }
 
   export type EnumstatusBookingNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -5407,6 +5455,10 @@ export namespace Prisma {
     decrement?: number
     multiply?: number
     divide?: number
+  }
+
+  export type BoolFieldUpdateOperationsInput = {
+    set?: boolean
   }
 
   export type NullableEnumstatusBookingFieldUpdateOperationsInput = {
@@ -5628,6 +5680,11 @@ export namespace Prisma {
     not?: NestedFloatFilter<$PrismaModel> | number
   }
 
+  export type NestedBoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
   export type NestedEnumstatusBookingNullableFilter<$PrismaModel = never> = {
     equals?: $Enums.statusBooking | EnumstatusBookingFieldRefInput<$PrismaModel> | null
     in?: $Enums.statusBooking[] | null
@@ -5662,6 +5719,14 @@ export namespace Prisma {
     not?: NestedFloatNullableFilter<$PrismaModel> | number | null
   }
 
+  export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
+  }
+
   export type NestedEnumstatusBookingNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: $Enums.statusBooking | EnumstatusBookingFieldRefInput<$PrismaModel> | null
     in?: $Enums.statusBooking[] | null
@@ -5678,6 +5743,7 @@ export namespace Prisma {
     jamMulai?: Date | string | null
     jamSelesai?: Date | string | null
     totalharga?: number | null
+    tersedia?: boolean
     status?: $Enums.statusBooking | null
     createdAt?: Date | string | null
     updatedAt?: Date | string | null
@@ -5691,6 +5757,7 @@ export namespace Prisma {
     jamMulai?: Date | string | null
     jamSelesai?: Date | string | null
     totalharga?: number | null
+    tersedia?: boolean
     status?: $Enums.statusBooking | null
     createdAt?: Date | string | null
     updatedAt?: Date | string | null
@@ -5733,6 +5800,7 @@ export namespace Prisma {
     jamMulai?: DateTimeNullableFilter<"booking"> | Date | string | null
     jamSelesai?: DateTimeNullableFilter<"booking"> | Date | string | null
     totalharga?: IntNullableFilter<"booking"> | number | null
+    tersedia?: BoolFilter<"booking"> | boolean
     status?: EnumstatusBookingNullableFilter<"booking"> | $Enums.statusBooking | null
     createdAt?: DateTimeNullableFilter<"booking"> | Date | string | null
     updatedAt?: DateTimeNullableFilter<"booking"> | Date | string | null
@@ -5744,6 +5812,7 @@ export namespace Prisma {
     jamMulai?: Date | string | null
     jamSelesai?: Date | string | null
     totalharga?: number | null
+    tersedia?: boolean
     status?: $Enums.statusBooking | null
     createdAt?: Date | string | null
     updatedAt?: Date | string | null
@@ -5757,6 +5826,7 @@ export namespace Prisma {
     jamMulai?: Date | string | null
     jamSelesai?: Date | string | null
     totalharga?: number | null
+    tersedia?: boolean
     status?: $Enums.statusBooking | null
     createdAt?: Date | string | null
     updatedAt?: Date | string | null
@@ -5927,6 +5997,7 @@ export namespace Prisma {
     jamMulai?: Date | string | null
     jamSelesai?: Date | string | null
     totalharga?: number | null
+    tersedia?: boolean
     status?: $Enums.statusBooking | null
     createdAt?: Date | string | null
     updatedAt?: Date | string | null
@@ -5938,6 +6009,7 @@ export namespace Prisma {
     jamMulai?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     jamSelesai?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     totalharga?: NullableIntFieldUpdateOperationsInput | number | null
+    tersedia?: BoolFieldUpdateOperationsInput | boolean
     status?: NullableEnumstatusBookingFieldUpdateOperationsInput | $Enums.statusBooking | null
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -5951,6 +6023,7 @@ export namespace Prisma {
     jamMulai?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     jamSelesai?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     totalharga?: NullableIntFieldUpdateOperationsInput | number | null
+    tersedia?: BoolFieldUpdateOperationsInput | boolean
     status?: NullableEnumstatusBookingFieldUpdateOperationsInput | $Enums.statusBooking | null
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -5963,6 +6036,7 @@ export namespace Prisma {
     jamMulai?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     jamSelesai?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     totalharga?: NullableIntFieldUpdateOperationsInput | number | null
+    tersedia?: BoolFieldUpdateOperationsInput | boolean
     status?: NullableEnumstatusBookingFieldUpdateOperationsInput | $Enums.statusBooking | null
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -5975,6 +6049,7 @@ export namespace Prisma {
     jamMulai?: Date | string | null
     jamSelesai?: Date | string | null
     totalharga?: number | null
+    tersedia?: boolean
     status?: $Enums.statusBooking | null
     createdAt?: Date | string | null
     updatedAt?: Date | string | null
@@ -5986,6 +6061,7 @@ export namespace Prisma {
     jamMulai?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     jamSelesai?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     totalharga?: NullableIntFieldUpdateOperationsInput | number | null
+    tersedia?: BoolFieldUpdateOperationsInput | boolean
     status?: NullableEnumstatusBookingFieldUpdateOperationsInput | $Enums.statusBooking | null
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -5999,6 +6075,7 @@ export namespace Prisma {
     jamMulai?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     jamSelesai?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     totalharga?: NullableIntFieldUpdateOperationsInput | number | null
+    tersedia?: BoolFieldUpdateOperationsInput | boolean
     status?: NullableEnumstatusBookingFieldUpdateOperationsInput | $Enums.statusBooking | null
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -6011,6 +6088,7 @@ export namespace Prisma {
     jamMulai?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     jamSelesai?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     totalharga?: NullableIntFieldUpdateOperationsInput | number | null
+    tersedia?: BoolFieldUpdateOperationsInput | boolean
     status?: NullableEnumstatusBookingFieldUpdateOperationsInput | $Enums.statusBooking | null
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
