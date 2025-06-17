@@ -1,5 +1,6 @@
 import prisma from "../../prisma/prisma.js";
 
+// Get semua booking
 const getAllBooking = async (req, res) => {
   try {
     const bookings = await prisma.booking.findMany({
@@ -32,17 +33,13 @@ const createBooking = async (req, res) => {
     tanggalBooking,
     tersedia,
     totalharga,
+    isLookingForPartner,
   } = req.body;
 
-  const userId = req.user.id; // dari JWT
+  const userId = req.user.id;
 
   try {
-    if (
-      !lapanganId ||
-      !tanggalBooking ||
-      !tersedia ||
-      !totalharga
-    ) {
+    if (!lapanganId || !tanggalBooking || tersedia === undefined || totalharga === undefined) {
       return res.status(400).json({
         status: "error",
         message: "Semua field booking harus diisi",
@@ -51,7 +48,6 @@ const createBooking = async (req, res) => {
 
     const tanggal = new Date(tanggalBooking);
 
-    // Cek konflik
     const conflict = await prisma.booking.findFirst({
       where: {
         lapanganId,
@@ -70,7 +66,6 @@ const createBooking = async (req, res) => {
       });
     }
 
-    // Simpan booking
     const newBooking = await prisma.booking.create({
       data: {
         userId,
@@ -80,6 +75,7 @@ const createBooking = async (req, res) => {
         tersedia,
         totalharga,
         status: "PENDING",
+        isLookingForPartner: isLookingForPartner || false,
       },
     });
 
@@ -98,7 +94,7 @@ const createBooking = async (req, res) => {
   }
 };
 
-// Get booking milik user (user login)
+// Get booking milik user
 const getBookingByUser = async (req, res) => {
   const { userId } = req.params;
 
@@ -135,7 +131,7 @@ const getBookingByUser = async (req, res) => {
   }
 };
 
-// Update status booking (admin)
+// Update status booking
 const updateBookingStatus = async (req, res) => {
   const { id } = req.params;
   const { status } = req.body;
@@ -155,7 +151,7 @@ const updateBookingStatus = async (req, res) => {
       data: {
         status,
         tersedia: status === "CONFIRMED" ? false : status === "CANCELED" ? true : undefined,
-        updatedAt: new Date(), // isi updatedAt
+        updatedAt: new Date(),
       },
     });
 
@@ -173,7 +169,7 @@ const updateBookingStatus = async (req, res) => {
   }
 };
 
-// Get booking by ID (untuk user atau admin)
+// Get booking berdasarkan ID
 const getBookingByIdBooking = async (req, res) => {
   const { id } = req.params;
 
@@ -194,7 +190,6 @@ const getBookingByIdBooking = async (req, res) => {
       });
     }
 
-    // Cek akses jika bukan admin
     if (req.user.role !== "Admin" && req.user.id !== booking.userId) {
       return res.status(403).json({
         status: "error",
@@ -216,29 +211,93 @@ const getBookingByIdBooking = async (req, res) => {
   }
 };
 
+// Get booking untuk komunitas
 const getBookingForCommunity = async (req, res) => {
   try {
-    const hasil = await prisma.booking.findMany({
+    const bookings = await prisma.booking.findMany({
       where: {
         isLookingForPartner: true,
+        status: "PENDING",
+      },
+      include: {
+        user: true,
+        detailLapangan: true,
+        slotWaktu: true,
+      },
+      orderBy: {
+        tanggalBooking: "asc",
+      },
+    });
+
+    res.json({
+      status: "success",
+      data: bookings,
+    });
+  } catch (error) {
+    console.error("Gagal mengambil data komunitas:", error);
+    res.status(500).json({
+      status: "error",
+      message: "Gagal mendapatkan data booking untuk komunitas",
+      error,
+    });
+  }
+};
+
+// Join booking komunitas
+const joinBooking = async (req, res) => {
+  const { id } = req.params;
+  const partnerId = req.user.id;
+
+  try {
+    const booking = await prisma.booking.findUnique({
+      where: { id },
+    });
+
+    if (!booking) {
+      return res.status(404).json({
+        status: "error",
+        message: "Booking tidak ditemukan",
+      });
+    }
+
+    if (!booking.isLookingForPartner) {
+      return res.status(400).json({
+        status: "error",
+        message: "Booking ini sudah memiliki partner",
+      });
+    }
+
+    if (booking.userId === partnerId) {
+      return res.status(400).json({
+        status: "error",
+        message: "Kamu tidak bisa join booking milikmu sendiri",
+      });
+    }
+
+    const updated = await prisma.booking.update({
+      where: { id },
+      data: {
+        isLookingForPartner: false,
+        partnerId,
       },
     });
 
     res.status(200).json({
       status: "success",
-      message: "Berhasil mendapatkan booking list untuk komunitas",
-      data: hasil,
+      message: "Berhasil join booking",
+      data: updated,
     });
   } catch (error) {
-    console.error("Error :", error);
-    return res.status(500).json({
+    console.error("Gagal join booking:", error);
+    res.status(500).json({
       status: "error",
-      message: "Gagal mendapatkan data booking untuk komunitas",
+      message: "Gagal join booking",
+      error,
     });
   }
 };
 
-// Delete booking by ID (hanya admin)
+// Delete booking
 const deleteBookingByIdBooking = async (req, res) => {
   const { id } = req.params;
 
@@ -250,7 +309,6 @@ const deleteBookingByIdBooking = async (req, res) => {
   }
 
   try {
-    // Pastikan booking ada
     const existing = await prisma.booking.findUnique({
       where: { id },
     });
@@ -279,6 +337,7 @@ const deleteBookingByIdBooking = async (req, res) => {
   }
 };
 
+// Get booking berdasarkan tanggal
 const getBookByDate = async (req, res) => {
   const { tanggal } = req.params;
   try {
@@ -309,6 +368,7 @@ const getBookByDate = async (req, res) => {
     });
   }
 };
+
 export default {
   getAllBooking,
   createBooking,
@@ -317,5 +377,6 @@ export default {
   getBookingByIdBooking,
   deleteBookingByIdBooking,
   getBookingForCommunity,
-  getBookByDate
+  getBookByDate,
+  joinBooking, // ✅ ditambahkan
 };
